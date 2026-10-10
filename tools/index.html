@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZZ - Tools TKJ Lengkap</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #2563EB;
+  --primary-light: #3B82F6;
+  --cyan: #06B6D4;
+  --navy: #0F172A;
+  --navy-light: #1E293B;
+  --navy-mid: #334155;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.05);
+  --card-bg: rgba(30, 41, 59, 0.8);
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --purple: #8B5CF6;
+  --gradient-1: linear-gradient(135deg, #2563EB, #06B6D4);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --transition: all 0.3s ease;
+}
+
+[data-theme="light"] {
+  --navy: #F8FAFC;
+  --navy-light: #F1F5F9;
+  --navy-mid: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border: rgba(0, 0, 0, 0.08);
+  --glass: rgba(0, 0, 0, 0.03);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0.875rem 1.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+[data-theme="light"] nav { background: rgba(248, 250, 252, 0.9); }
+
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+.logo-icon {
+  width: 40px; height: 40px;
+  background: var(--gradient-1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.1rem;
+}
+.logo-text { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; }
+.logo-text span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.nav-right { display: flex; gap: 0.75rem; align-items: center; }
+.btn-back {
+  color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  display: flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-sm); border: 1px solid var(--border); transition: var(--transition);
+}
+.btn-back:hover { color: var(--text-primary); background: var(--glass); }
+.btn-theme {
+  width: 36px; height: 36px; border: 1px solid var(--border); background: var(--glass);
+  border-radius: var(--radius-sm); cursor: pointer; color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center; transition: var(--transition);
+}
+.btn-theme:hover { color: var(--text-primary); }
+
+.container { max-width: 1200px; width: 100%; margin: 0 auto; padding: 2rem 1.5rem; flex: 1; }
+.page-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+.page-title span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.page-desc { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
+
+/* TAB NAVIGATION UTILS */
+.tools-tabs {
+  display: flex; gap: 0.5rem; overflow-x: auto; margin-bottom: 2rem;
+  background: var(--navy-light); padding: 0.375rem; border-radius: var(--radius);
+  border: 1px solid var(--border); scrollbar-width: none;
+}
+.tools-tabs::-webkit-scrollbar { display: none; }
+.tool-tab {
+  padding: 0.625rem 1.25rem; border-radius: calc(var(--radius) - 4px); border: none;
+  background: transparent; color: var(--text-muted); cursor: pointer;
+  font-size: 0.85rem; font-weight: 600; transition: var(--transition);
+  font-family: 'Inter', sans-serif; display: flex; align-items: center;
+  gap: 0.5rem; whitespace: nowrap; flex-shrink: 0;
+}
+.tool-tab.active { background: var(--primary); color: #fff; box-shadow: 0 2px 10px rgba(37,99,235,0.3); }
+
+/* TOOL PANELS & CARDS */
+.tool-panel { display: none; animation: fadeIn 0.3s ease; }
+.tool-panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.tool-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.5rem;
+  box-shadow: var(--shadow); backdrop-filter: blur(10px);
+}
+.tool-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
+.tool-title i { color: var(--cyan); }
+
+/* FORM ELEMENTS */
+.form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem; }
+.form-group { margin-bottom: 1rem; }
+.form-label {
+  display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+  margin-bottom: 0.375rem; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 0.75rem 1rem; background: var(--navy); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text-primary); font-size: 0.9rem; outline: none;
+  transition: var(--transition); font-family: 'JetBrains Mono', monospace;
+}
+[data-theme="light"] .form-input, [data-theme="light"] .form-select, [data-theme="light"] .form-textarea { background: var(--navy-light); }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
+.form-select { font-family: 'Inter', sans-serif; cursor: pointer; }
+.form-textarea { resize: vertical; min-height: 100px; }
+
+/* BUTTONS */
+.btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+.btn-action {
+  padding: 0.75rem 1.5rem; background: var(--gradient-1); border: none;
+  border-radius: var(--radius-sm); color: #fff; font-size: 0.875rem; font-weight: 700;
+  cursor: pointer; transition: var(--transition); font-family: 'Inter', sans-serif;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-action:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(37,99,235,0.4); }
+.btn-secondary {
+  padding: 0.75rem 1.25rem; background: transparent; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.875rem; font-weight: 600;
+  cursor: pointer; transition: var(--transition); font-family: 'Inter', sans-serif;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-secondary:hover { background: var(--glass); color: var(--text-primary); border-color: var(--text-muted); }
+
+.output-box {
+  background: var(--navy); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 1.25rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem; line-height: 1.7; min-height: 60px; color: var(--cyan);
+  word-break: break-all; white-space: pre-wrap;
+}
+[data-theme="light"] .output-box { background: var(--navy-light); }
+
+.slider-group { margin-bottom: 1.25rem; }
+.slider-row { display: flex; align-items: center; gap: 1rem; }
+.slider { flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--navy-mid); outline: none; }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--primary); cursor: pointer; }
+.slider-val { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 700; color: var(--primary-light); min-width: 40px; text-align: right; }
+
+.checkboxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+.checkbox-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; user-select: none; }
+.checkbox-item input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+
+/* PORT TABLE RESPONSIVE WRAPPER */
+.port-search-wrap { position: relative; margin-bottom: 1rem; }
+.port-search-wrap i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+.port-search { width: 100%; padding: 0.75rem 1rem 0.75rem 2.75rem; background: var(--navy); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 0.9rem; outline: none; font-family: 'Inter', sans-serif; }
+[data-theme="light"] .port-search { background: var(--navy-light); }
+
+.table-responsive { width: 100%; overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.port-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+.port-table th { background: rgba(37,99,235,0.1); color: var(--text-muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.875rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+.port-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+.port-table tr:last-child td { border-bottom: none; }
+.port-table tr:nth-child(even) td { background: var(--glass); }
+.port-num { font-family: 'JetBrains Mono', monospace; color: var(--primary-light); font-weight: 600; }
+.port-proto { font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 100px; font-weight: 700; display: inline-block; }
+.proto-tcp { background: rgba(37,99,235,0.15); color: var(--primary-light); }
+.proto-udp { background: rgba(6,182,212,0.15); color: var(--cyan); }
+.proto-both { background: rgba(139,92,246,0.15); color: #A78BFA; }
+
+/* QR CODE */
+.qr-output { text-align: center; padding: 2rem; background: var(--navy); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-top: 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+[data-theme="light"] .qr-output { background: #fff; }
+#qrImg { border-radius: var(--radius-sm); max-width: 100%; height: auto; }
+
+/* RANDOM IP */
+.ip-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+.ip-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--navy); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+[data-theme="light"] .ip-item { background: var(--navy-light); }
+.ip-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--cyan); }
+.copy-btn { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.375rem 0.75rem; color: var(--text-muted); cursor: pointer; font-size: 0.75rem; transition: var(--transition); font-family: 'Inter', sans-serif; }
+.copy-btn:hover { color: var(--primary-light); border-color: var(--primary); }
+
+.converter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem; }
+
+/* TOAST NOTIFICATION */
+.toast-container { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 9998; display: flex; flex-direction: column; gap: 0.5rem; align-items: center; width: 90%; max-width: 400px; }
+.toast { width: 100%; background: var(--navy-mid); border: 1px solid var(--success); border-radius: var(--radius-sm); padding: 0.75rem 1.25rem; font-size: 0.875rem; color: var(--success); display: flex; align-items: center; justify-content: center; gap: 0.5rem; animation: tin 0.3s ease; box-shadow: var(--shadow); }
+@keyframes tin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* MEDIA QUERIES FOR MOBILES */
+@media (max-width: 768px) {
+  nav { padding: 0.75rem 1rem; }
+  .logo-text { font-size: 1.1rem; }
+  .container { padding: 1.25rem 1rem; }
+  .page-title { font-size: 1.75rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .tool-card { padding: 1.25rem; }
+  .btn-row { flex-direction: column; }
+  .btn-action, .btn-secondary { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-icon"><i class="fas fa-network-wired"></i></div>
+    <span class="logo-text">AZZ <span>Tools</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Beranda</a>
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle Theme"><i class="fas fa-sun"></i></button>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="page-title">AZZ <span>Tools Network</span></h1>
+  <p class="page-desc">Kumpulan tools interaktif responsif untuk kebutuhan jaringan dan pemrograman TKJ.</p>
+
+  <div class="tools-tabs">
+    <button class="tool-tab active" onclick="showTool('password')"><i class="fas fa-key"></i> Password Gen</button>
+    <button class="tool-tab" onclick="showTool('converter')"><i class="fas fa-exchange-alt"></i> Converter</button>
+    <button class="tool-tab" onclick="showTool('qr')"><i class="fas fa-qrcode"></i> QR Code</button>
+    <button class="tool-tab" onclick="showTool('randomip')"><i class="fas fa-random"></i> Random IP</button>
+    <button class="tool-tab" onclick="showTool('ports')"><i class="fas fa-plug"></i> Port Reference</button>
+    <button class="tool-tab" onclick="showTool('ping')"><i class="fas fa-satellite-dish"></i> Net Calc</button>
+  </div>
+
+  <!-- PASSWORD GENERATOR -->
+  <div class="tool-panel active" id="tool-password">
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-key"></i> Password Generator</div>
+      <div class="slider-group">
+        <label class="form-label">Panjang Password: <span id="pwLenVal">16</span> karakter</label>
+        <div class="slider-row">
+          <input type="range" class="slider" id="pwLen" min="6" max="64" value="16" oninput="document.getElementById('pwLenVal').textContent=this.value;genPassword()">
+          <span class="slider-val" id="pwLenVal2">16</span>
+        </div>
+      </div>
+      <div class="checkboxes">
+        <label class="checkbox-item"><input type="checkbox" id="pwUpper" checked> Huruf Besar (A-Z)</label>
+        <label class="checkbox-item"><input type="checkbox" id="pwLower" checked> Huruf Kecil (a-z)</label>
+        <label class="checkbox-item"><input type="checkbox" id="pwNumbers" checked> Angka (0-9)</label>
+        <label class="checkbox-item"><input type="checkbox" id="pwSymbols"> Simbol (!@#$%)</label>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password yang Dihasilkan</label>
+        <div style="display:flex;gap:0.5rem;">
+          <input type="text" class="form-input" id="pwOutput" readonly style="flex:1;">
+          <button class="btn-secondary" onclick="copyPw()"><i class="fas fa-copy"></i></button>
+        </div>
+      </div>
+      <div id="pwStrength" style="margin-bottom:1rem;"></div>
+      <div class="btn-row">
+        <button class="btn-action" onclick="genPassword()"><i class="fas fa-sync"></i> Generate Password</button>
+        <button class="btn-secondary" onclick="genMultiple()"><i class="fas fa-list"></i> Generate 5 Password</button>
+      </div>
+      <div class="output-box" id="multiPwOutput" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- CONVERTER -->
+  <div class="tool-panel" id="tool-converter">
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-exchange-alt"></i> Number System Converter</div>
+      <div class="form-group">
+        <label class="form-label">Masukkan Nilai</label>
+        <input type="text" class="form-input" id="convInput" placeholder="Ketik angka atau biner..." oninput="convertAll()">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Sumber Format</label>
+        <select class="form-select" id="convFrom" onchange="convertAll()">
+          <option value="10">Desimal (Basis 10)</option>
+          <option value="2">Biner (Basis 2)</option>
+          <option value="8">Oktal (Basis 8)</option>
+          <option value="16">Heksadesimal (Basis 16)</option>
+        </select>
+      </div>
+      <div class="converter-grid" id="convResults">
+        <div class="tool-card" style="margin:0;padding:1.25rem;">
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.375rem;">DESIMAL</div>
+          <div class="output-box" id="outDec" style="margin:0;padding:0.75rem;min-height:auto;">-</div>
+        </div>
+        <div class="tool-card" style="margin:0;padding:1.25rem;">
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.375rem;">BINER</div>
+          <div class="output-box" id="outBin" style="margin:0;padding:0.75rem;min-height:auto;word-break:break-all;">-</div>
+        </div>
+        <div class="tool-card" style="margin:0;padding:1.25rem;">
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.375rem;">OKTAL</div>
+          <div class="output-box" id="outOct" style="margin:0;padding:0.75rem;min-height:auto;">-</div>
+        </div>
+        <div class="tool-card" style="margin:0;padding:1.25rem;">
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.375rem;">HEKSADESIMAL</div>
+          <div class="output-box" id="outHex" style="margin:0;padding:0.75rem;min-height:auto;">-</div>
+        </div>
+        <div class="tool-card" style="margin:0;padding:1.25rem;">
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.375rem;">ASCII (jika valid)</div>
+          <div class="output-box" id="outAscii" style="margin:0;padding:0.75rem;min-height:auto;">-</div>
+        </div>
+        <div class="tool-card" style="margin:0;padding:1.25rem;">
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.375rem;">BITS (Jumlah bit)</div>
+          <div class="output-box" id="outBits" style="margin:0;padding:0.75rem;min-height:auto;">-</div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-tachometer-alt"></i> Bandwidth Converter</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nilai</label>
+          <input type="number" class="form-input" id="bwInput" placeholder="100" oninput="convertBandwidth()" style="font-family:'Inter',sans-serif;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Satuan</label>
+          <select class="form-select" id="bwUnit" onchange="convertBandwidth()">
+            <option value="bps">bps (bit per second)</option>
+            <option value="kbps">Kbps (Kilobit/s)</option>
+            <option value="mbps" selected>Mbps (Megabit/s)</option>
+            <option value="gbps">Gbps (Gigabit/s)</option>
+            <option value="kBps">KBps (Kilobyte/s)</option>
+            <option value="MBps">MBps (Megabyte/s)</option>
+          </select>
+        </div>
+      </div>
+      <div class="output-box" id="bwOutput">Masukkan nilai untuk mengkonversi bandwidth.</div>
+    </div>
+  </div>
+
+  <!-- QR CODE -->
+  <div class="tool-panel" id="tool-qr">
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-qrcode"></i> QR Code Generator</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Teks / URL / Data</label>
+          <textarea class="form-textarea form-input" id="qrInput" placeholder="Masukkan teks, URL, atau data yang ingin dijadikan QR Code..."></textarea>
+        </div>
+        <div>
+          <div class="form-group">
+            <label class="form-label">Ukuran QR Code</label>
+            <select class="form-select" id="qrSize">
+              <option value="150">Kecil (150px)</option>
+              <option value="200" selected>Sedang (200px)</option>
+              <option value="300">Besar (300px)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Warna Foreground</label>
+            <input type="color" class="form-input" id="qrColor" value="#2563EB" style="height:44px;padding:0.25rem;">
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-action" onclick="generateQR()"><i class="fas fa-qrcode"></i> Generate QR Code</button>
+        <button class="btn-secondary" onclick="downloadQR()"><i class="fas fa-download"></i> Download</button>
+      </div>
+      <div class="qr-output" id="qrOutput">
+        <div style="color:var(--text-muted);font-size:0.875rem;">
+          <i class="fas fa-qrcode" style="font-size:3rem;display:block;margin-bottom:0.5rem;opacity:0.3;"></i>QR Code akan muncul di sini
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RANDOM IP -->
+  <div class="tool-panel" id="tool-randomip">
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-random"></i> Random IP Generator</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Jenis IP</label>
+          <select class="form-select" id="ipType">
+            <option value="private-c">Private Kelas C (192.168.x.x)</option>
+            <option value="private-b">Private Kelas B (172.16-31.x.x)</option>
+            <option value="private-a">Private Kelas A (10.x.x.x)</option>
+            <option value="public">Public IP (Random)</option>
+            <option value="loopback">Loopback (127.x.x.x)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jumlah IP</label>
+          <select class="form-select" id="ipCount">
+            <option value="5">5 IP</option>
+            <option value="10" selected>10 IP</option>
+            <option value="20">20 IP</option>
+            <option value="50">50 IP</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">CIDR Prefix</label>
+        <select class="form-select" id="ipCidr">
+          <option value="/8">/8</option><option value="/16">/16</option>
+          <option value="/24" selected>/24</option><option value="/25">/25</option>
+          <option value="/26">/26</option><option value="/27">/27</option>
+          <option value="/28">/28</option><option value="/29">/29</option><option value="/30">/30</option>
+        </select>
+      </div>
+      <div class="btn-row">
+        <button class="btn-action" onclick="genRandomIPs()"><i class="fas fa-random"></i> Generate IP</button>
+        <button class="btn-secondary" onclick="copyAllIPs()"><i class="fas fa-copy"></i> Copy Semua</button>
+      </div>
+      <div class="ip-list" id="ipList"></div>
+    </div>
+  </div>
+
+  <!-- PORT REFERENCE -->
+  <div class="tool-panel" id="tool-ports">
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-plug"></i> Port Number Reference</div>
+      <div class="port-search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" class="port-search" id="portSearch" placeholder="Cari port atau nama service..." oninput="filterPorts()">
+      </div>
+      <div class="table-responsive">
+        <table class="port-table">
+          <thead>
+            <tr>
+              <th>Port</th>
+              <th>Protokol</th>
+              <th>Nama Service</th>
+              <th>Deskripsi</th>
+            </tr>
+          </thead>
+          <tbody id="portTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- NET CALCULATOR -->
+  <div class="tool-panel" id="tool-ping">
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-satellite-dish"></i> Network Information Calculator</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">IP Address</label>
+          <input type="text" class="form-input" id="netIP" placeholder="192.168.1.50" value="192.168.1.50">
+        </div>
+        <div class="form-group">
+          <label class="form-label">CIDR / Prefix</label>
+          <select class="form-select" id="netCIDR">
+            <option>/8</option><option>/16</option><option value="/24" selected>/24</option>
+            <option>/25</option><option>/26</option><option>/27</option><option>/28</option><option>/29</option><option>/30</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-action" onclick="calcNet()"><i class="fas fa-bolt"></i> Analisis Jaringan</button>
+      <div class="output-box" id="netOutput" style="margin-top:1rem;">Klik "Analisis Jaringan" untuk melihat informasi lengkap.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-title"><i class="fas fa-stopwatch"></i> Estimasi Waktu Download/Upload</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Ukuran File (MB)</label>
+          <input type="number" class="form-input" id="fileSize" placeholder="100" style="font-family:'Inter',sans-serif;">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Kecepatan (Mbps)</label>
+          <input type="number" class="form-input" id="speed" placeholder="10" style="font-family:'Inter',sans-serif;">
+        </div>
+      </div>
+      <button class="btn-action" onclick="calcDownload()"><i class="fas fa-clock"></i> Hitung Waktu</button>
+      <div class="output-box" id="dlOutput" style="margin-top:1rem;">Masukkan ukuran file dan kecepatan untuk menghitung estimasi waktu.</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// THEME
+const savedTheme=localStorage.getItem('tkj-theme')||'dark';
+document.documentElement.setAttribute('data-theme',savedTheme);
+const tt=document.getElementById('themeToggle');
+tt.querySelector('i').className=savedTheme==='dark'?'fas fa-sun':'fas fa-moon';
+tt.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');const n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('tkj-theme',n);tt.querySelector('i').className=n==='dark'?'fas fa-sun':'fas fa-moon';});
+
+function showTool(id){
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tool-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tool-'+id).classList.add('active');
+  document.querySelectorAll('.tool-tab')[['password','converter','qr','randomip','ports','ping'].indexOf(id)].classList.add('active');
+  if(id==='ports')renderPorts();
+}
+
+// PASSWORD GENERATOR
+function genPassword(){
+  const len=parseInt(document.getElementById('pwLen').value);
+  const upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lower='abcdefghijklmnopqrstuvwxyz';
+  const nums='0123456789';
+  const syms='!@#$%^&*()_+-=[]{}|;:,.<>?';
+  let chars='';
+  if(document.getElementById('pwUpper').checked)chars+=upper;
+  if(document.getElementById('pwLower').checked)chars+=lower;
+  if(document.getElementById('pwNumbers').checked)chars+=nums;
+  if(document.getElementById('pwSymbols').checked)chars+=syms;
+  if(!chars)chars=lower;
+  let pw='';
+  for(let i=0;i<len;i++)pw+=chars[Math.floor(Math.random()*chars.length)];
+  document.getElementById('pwOutput').value=pw;
+  document.getElementById('pwLenVal').textContent=len;
+  document.getElementById('pwLenVal2').textContent=len;
+  showStrength(pw);
+  return pw;
+}
+function showStrength(pw){
+  let score=0;
+  if(pw.length>=8)score++;if(pw.length>=12)score++;if(pw.length>=16)score++;
+  if(/[A-Z]/.test(pw))score++;if(/[a-z]/.test(pw))score++;
+  if(/[0-9]/.test(pw))score++;if(/[^A-Za-z0-9]/.test(pw))score++;
+  const levels=[{label:'Sangat Lemah',color:'#EF4444'},{label:'Lemah',color:'#F97316'},{label:'Sedang',color:'#F59E0B'},{label:'Kuat',color:'#10B981'},{label:'Sangat Kuat',color:'#06B6D4'}];
+  const lvl=Math.min(4,Math.floor(score/1.4));
+  const pct=((score/7)*100).toFixed(0);
+  document.getElementById('pwStrength').innerHTML=`<div style="display:flex;align-items:center;gap:0.75rem;"><div style="flex:1;height:6px;background:var(--navy-mid);border-radius:3px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:${levels[lvl].color};border-radius:3px;transition:width 0.3s"></div></div><span style="font-size:0.78rem;font-weight:700;color:${levels[lvl].color}">${levels[lvl].label}</span></div>`;
+}
+function copyPw(){const v=document.getElementById('pwOutput').value;if(!v)return;navigator.clipboard.writeText(v).then(()=>showToast('Password disalin!'));}
+function genMultiple(){
+  const pws=Array.from({length:5},()=>genPassword()).join('\n');
+  document.getElementById('multiPwOutput').textContent=pws;
+  document.getElementById('multiPwOutput').style.display='block';
+}
+genPassword();
+
+// CONVERTER
+function convertAll(){
+  const input=document.getElementById('convInput').value.trim();
+  const from=parseInt(document.getElementById('convFrom').value);
+  if(!input){['outDec','outBin','outOct','outHex','outAscii','outBits'].forEach(id=>document.getElementById(id).textContent='-');return;}
+  try{
+    const dec=parseInt(input,from);
+    if(isNaN(dec)){['outDec','outBin','outOct','outHex','outAscii','outBits'].forEach(id=>document.getElementById(id).textContent='Error: Input tidak valid');return;}
+    document.getElementById('outDec').textContent=dec.toString(10);
+    document.getElementById('outBin').textContent=dec.toString(2);
+    document.getElementById('outOct').textContent=dec.toString(8);
+    document.getElementById('outHex').textContent=dec.toString(16).toUpperCase();
+    document.getElementById('outAscii').textContent=dec>=32&&dec<=126?String.fromCharCode(dec)+' ('+dec+')':`Non-printable (${dec})`;
+    document.getElementById('outBits').textContent=dec.toString(2).length+' bit';
+  }catch(e){['outDec','outBin','outOct','outHex','outAscii','outBits'].forEach(id=>document.getElementById(id).textContent='Error');}
+}
+
+function convertBandwidth(){
+  const val=parseFloat(document.getElementById('bwInput').value);
+  const unit=document.getElementById('bwUnit').value;
+  if(isNaN(val)||val<=0){document.getElementById('bwOutput').textContent='Masukkan nilai yang valid.';return;}
+  const toBps={bps:1,kbps:1e3,mbps:1e6,gbps:1e9,kBps:8e3,MBps:8e6};
+  const bps=val*toBps[unit];
+  document.getElementById('bwOutput').textContent=`${val} ${unit} =
+${bps.toFixed(0)} bps
+${(bps/1e3).toFixed(3)} Kbps
+${(bps/1e6).toFixed(6)} Mbps
+${(bps/1e9).toFixed(9)} Gbps
+${(bps/8e3).toFixed(3)} KBps (Kilobyte/s)
+${(bps/8e6).toFixed(6)} MBps (Megabyte/s)
+${(bps/8e9).toFixed(9)} GBps (Gigabyte/s)`;
+}
+
+// QR CODE
+function generateQR(){
+  const text=document.getElementById('qrInput').value.trim();
+  if(!text){showToast('Masukkan teks terlebih dahulu!');return;}
+  const size=parseInt(document.getElementById('qrSize').value);
+  const color=document.getElementById('qrColor').value;
+  const url=`https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&color=${color.replace('#','')}&bgcolor=0F172A&format=png`;
+  document.getElementById('qrOutput').innerHTML=`<img id="qrImg" src="${url}" alt="QR Code" style="width:${size}px;height:${size}px;border-radius:8px;image-rendering:pixelated;"><br><span style="font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem;display:block">Klik kanan untuk menyimpan gambar</span>`;
+}
+function downloadQR(){const img=document.getElementById('qrImg');if(!img){showToast('Generate QR Code dulu!');return;}const a=document.createElement('a');a.href=img.src;a.download='qrcode-tkj.png';a.click();}
+
+// RANDOM IP
+let generatedIPs=[];
+function genRandomIPs(){
+  const type=document.getElementById('ipType').value;
+  const count=parseInt(document.getElementById('ipCount').value);
+  const cidr=document.getElementById('ipCidr').value;
+  generatedIPs=[];
+  for(let i=0;i<count;i++){
+    let ip;
+    if(type==='private-c')ip=`192.168.${r(0,255)}.${r(1,254)}`;
+    else if(type==='private-b')ip=`172.${r(16,31)}.${r(0,255)}.${r(1,254)}`;
+    else if(type==='private-a')ip=`10.${r(0,255)}.${r(0,255)}.${r(1,254)}`;
+    else if(type==='loopback')ip=`127.0.0.${r(1,254)}`;
+    else ip=`${r(1,223)}.${r(0,255)}.${r(0,255)}.${r(1,254)}`;
+    generatedIPs.push(ip+cidr);
+  }
+  document.getElementById('ipList').innerHTML=generatedIPs.map((ip,i)=>`
+    <div class="ip-item">
+      <span style="color:var(--text-muted);font-size:0.78rem;min-width:24px">${i+1}.</span>
+      <span class="ip-addr">${ip}</span>
+      <button class="copy-btn" onclick="copyIP('${ip}')"><i class="fas fa-copy"></i> Copy</button>
+    </div>`).join('');
+}
+function r(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+function copyIP(ip){navigator.clipboard.writeText(ip).then(()=>showToast('Disalin: '+ip));}
+function copyAllIPs(){if(generatedIPs.length===0)return;navigator.clipboard.writeText(generatedIPs.join('\n')).then(()=>showToast(`${generatedIPs.length} IP disalin!`));}
+
+// PORT TABLE
+const portData=[
+  {port:20,proto:'TCP',name:'FTP Data',desc:'File Transfer Protocol - Transfer data'},
+  {port:21,proto:'TCP',name:'FTP Control',desc:'File Transfer Protocol - Kontrol koneksi'},
+  {port:22,proto:'TCP',name:'SSH',desc:'Secure Shell - Remote access terenkripsi'},
+  {port:23,proto:'TCP',name:'Telnet',desc:'Telnet - Remote access tidak terenkripsi'},
+  {port:25,proto:'TCP',name:'SMTP',desc:'Simple Mail Transfer Protocol - Kirim email'},
+  {port:53,proto:'TCP/UDP',name:'DNS',desc:'Domain Name System - Resolusi nama domain'},
+  {port:67,proto:'UDP',name:'DHCP Server',desc:'Dynamic Host Configuration Protocol - Server'},
+  {port:68,proto:'UDP',name:'DHCP Client',desc:'Dynamic Host Configuration Protocol - Client'},
+  {port:69,proto:'UDP',name:'TFTP',desc:'Trivial File Transfer Protocol'},
+  {port:80,proto:'TCP',name:'HTTP',desc:'HyperText Transfer Protocol - Web tidak terenkripsi'},
+  {port:110,proto:'TCP',name:'POP3',desc:'Post Office Protocol v3 - Terima email'},
+  {port:119,proto:'TCP',name:'NNTP',desc:'Network News Transfer Protocol'},
+  {port:123,proto:'UDP',name:'NTP',desc:'Network Time Protocol - Sinkronisasi waktu'},
+  {port:143,proto:'TCP',name:'IMAP',desc:'Internet Message Access Protocol'},
+  {port:161,proto:'UDP',name:'SNMP',desc:'Simple Network Management Protocol'},
+  {port:162,proto:'UDP',name:'SNMP Trap',desc:'SNMP Trap - Notifikasi event'},
+  {port:443,proto:'TCP',name:'HTTPS',desc:'HTTP Secure - Web terenkripsi (SSL/TLS)'},
+  {port:445,proto:'TCP',name:'SMB',desc:'Server Message Block - File sharing Windows'},
+  {port:465,proto:'TCP',name:'SMTPS',desc:'SMTP Secure - Kirim email terenkripsi'},
+  {port:500,proto:'UDP',name:'IKE/IPSec',desc:'Internet Key Exchange - VPN IPSec'},
+  {port:514,proto:'UDP',name:'Syslog',desc:'System Logging Protocol'},
+  {port:587,proto:'TCP',name:'SMTP Submission',desc:'Email submission port (modern)'},
+  {port:993,proto:'TCP',name:'IMAPS',desc:'IMAP Secure'},
+  {port:995,proto:'TCP',name:'POP3S',desc:'POP3 Secure'},
+  {port:1194,proto:'UDP',name:'OpenVPN',desc:'OpenVPN - VPN open source'},
+  {port:1433,proto:'TCP',name:'MSSQL',desc:'Microsoft SQL Server database'},
+  {port:1701,proto:'UDP',name:'L2TP',desc:'Layer 2 Tunneling Protocol - VPN'},
+  {port:1723,proto:'TCP',name:'PPTP',desc:'Point-to-Point Tunneling Protocol - VPN'},
+  {port:2049,proto:'TCP',name:'NFS',desc:'Network File System'},
+  {port:3306,proto:'TCP',name:'MySQL',desc:'MySQL database server'},
+  {port:3389,proto:'TCP',name:'RDP',desc:'Remote Desktop Protocol - Windows'},
+  {port:5060,proto:'TCP/UDP',name:'SIP',desc:'Session Initiation Protocol - VoIP'},
+  {port:5432,proto:'TCP',name:'PostgreSQL',desc:'PostgreSQL database server'},
+  {port:6379,proto:'TCP',name:'Redis',desc:'Redis in-memory database'},
+  {port:8080,proto:'TCP',name:'HTTP Alt',desc:'HTTP alternatif - Proxy/Development'},
+  {port:8443,proto:'TCP',name:'HTTPS Alt',desc:'HTTPS alternatif'},
+  {port:8728,proto:'TCP',name:'Winbox API',desc:'MikroTik Winbox API'},
+  {port:8729,proto:'TCP',name:'Winbox SSL',desc:'MikroTik Winbox SSL'},
+  {port:51820,proto:'UDP',name:'WireGuard',desc:'WireGuard VPN modern'},
+];
+function renderPorts(filter=''){
+  const filtered=portData.filter(p=>filter===''||p.port.toString().includes(filter)||p.name.toLowerCase().includes(filter)||p.desc.toLowerCase().includes(filter)||p.proto.toLowerCase().includes(filter));
+  const protoClass={TCP:'proto-tcp',UDP:'proto-udp','TCP/UDP':'proto-both'};
+  document.getElementById('portTableBody').innerHTML=filtered.map(p=>`
+    <tr><td class="port-num">${p.port}</td>
+    <td><span class="port-proto ${protoClass[p.proto]||'proto-tcp'}">${p.proto}</span></td>
+    <td style="font-weight:600;color:var(--text-primary)">${p.name}</td>
+    <td style="color:var(--text-secondary)">${p.desc}</td></tr>`).join('');
+}
+function filterPorts(){renderPorts(document.getElementById('portSearch').value.toLowerCase());}
+
+// NET CALCULATOR
+function ipToNum(ip){return ip.split('.').reduce((acc,oct)=>((acc<<8)+parseInt(oct)),0)>>>0;}
+function numToIp(n){return[(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.');}
+function cidrToMask(cidr){return cidr===0?0:(0xFFFFFFFF<<(32-cidr))>>>0;}
+function calcNet(){
+  const ip=document.getElementById('netIP').value.trim();
+  const cidrStr=document.getElementById('netCIDR').value;
+  const cidr=parseInt(cidrStr.replace('/',''));
+  if(!/^(\d{1,3}\.){3}\d{1,3}$/.test(ip)){document.getElementById('netOutput').textContent='IP tidak valid!';return;}
+  const ipNum=ipToNum(ip);
+  const mask=cidrToMask(cidr);
+  const maskStr=numToIp(mask);
+  const net=ipNum&mask;const bcast=net|(~mask>>>0);
+  const hosts=Math.pow(2,32-cidr)-2;
+  const wc=maskStr.split('.').map(o=>255-parseInt(o)).join('.');
+  const isPrivate=ip.startsWith('192.168.')||ip.startsWith('10.')||(ip.startsWith('172.')&&parseInt(ip.split('.')[1])>=16&&parseInt(ip.split('.')[1])<=31);
+  document.getElementById('netOutput').textContent=`Analisis Jaringan: ${ip}${cidrStr}
+${'─'.repeat(40)}
+IP Address    : ${ip}
+CIDR Prefix   : ${cidrStr}
+Subnet Mask   : ${maskStr}
+Wildcard Mask : ${wc}
+${'─'.repeat(40)}
+Network Addr  : ${numToIp(net)}
+Broadcast     : ${numToIp(bcast)}
+Host Pertama  : ${numToIp(net+1)}
+Host Terakhir : ${numToIp(bcast-1)}
+Total Host    : ${hosts.toLocaleString()}
+Total Alamat  : ${(hosts+2).toLocaleString()}
+${'─'.repeat(40)}
+Jenis IP      : ${isPrivate?'Private (RFC 1918)':'Public'}
+Kelas IP      : ${ip.startsWith('1')?'A':ip.startsWith('2')?'B':'C'}`;
+}
+function calcDownload(){
+  const size=parseFloat(document.getElementById('fileSize').value);
+  const speed=parseFloat(document.getElementById('speed').value);
+  if(!size||!speed||size<=0||speed<=0){document.getElementById('dlOutput').textContent='Masukkan nilai yang valid!';return;}
+  const sizeInBits=size*8;const speedMbps=speed;
+  const seconds=sizeInBits/speedMbps;
+  const m=Math.floor(seconds/60);const s=Math.floor(seconds%60);
+  document.getElementById('dlOutput').textContent=`Estimasi Waktu Transfer
+${'─'.repeat(35)}
+Ukuran File  : ${size} MB (${(size*1024).toFixed(0)} KB)
+Kecepatan    : ${speed} Mbps
+${'─'.repeat(35)}
+Waktu        : ${m > 0 ? m+'m '+s+'s' : s+'s'} (${seconds.toFixed(2)} detik)
+${'─'.repeat(35)}
+Skenario Kecepatan:
+  1 Mbps   → ${(sizeInBits/1/60).toFixed(1)} menit
+  10 Mbps  → ${(sizeInBits/10/60).toFixed(1)} menit
+  100 Mbps → ${(sizeInBits/100/60).toFixed(2)} menit
+  1 Gbps   → ${(sizeInBits/1000/60).toFixed(3)} menit`;
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='toast';t.innerHTML=`<i class="fas fa-check-circle"></i> ${msg}`;document.getElementById('toastContainer').appendChild(t);setTimeout(()=>t.remove(),2500);}
+
+renderPorts();genRandomIPs();
+</script>
+</body>
+</html>

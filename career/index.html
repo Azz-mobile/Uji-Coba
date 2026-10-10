@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZZ - Career Center TKJ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <div class="logo-text-wrapper">
+          <span class="logo-title">AZZ</span>
+          <span class="logo-subtitle">TKJ Learning Hub</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="../index.html" class="btn-back">
+          <i class="fas fa-arrow-left"></i>
+          <span>Beranda</span>
+        </a>
+        <button class="btn-theme" id="themeToggle" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header Section -->
+  <header class="hero-section">
+    <div class="hero-container">
+      <span class="badge-pill"><i class="fas fa-rocket"></i> Portal Karir & Skill AZZ</span>
+      <h1 class="page-title">Career Center <span>TKJ</span></h1>
+      <p class="page-desc">Panduan komprehensif dan interaktif untuk membangun karir sukses di bidang Teknik Komputer & Jaringan. Dilengkapi strategi ATS, persiapan interview, dan roadmap sertifikasi.</p>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Tab Navigation Bar -->
+    <nav class="tabs-wrapper" aria-label="Kategori Panduan">
+      <div class="tabs-container" id="tabsContainer">
+        <button class="tab-btn active" onclick="showTab('jobs', this)">
+          <i class="fas fa-briefcase"></i>
+          <span>Peluang Karir</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('cv', this)">
+          <i class="fas fa-file-alt"></i>
+          <span>Tips CV ATS</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('interview', this)">
+          <i class="fas fa-comments"></i>
+          <span>Interview Q&A</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('cert', this)">
+          <i class="fas fa-certificate"></i>
+          <span>Sertifikasi</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('softskill', this)">
+          <i class="fas fa-star"></i>
+          <span>Soft Skills</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- TAB 1: PELUANG KARIR -->
+    <section class="tab-panel active" id="tab-jobs">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+          <div>
+            <h2 class="card-title">Prospek Karir Lulusan TKJ</h2>
+            <p class="card-subtitle">Lulusan SMK TKJ memiliki peluang karir yang sangat luas di era digital. Berikut posisi yang paling diminati:</p>
+          </div>
+        </div>
+        <div class="jobs-grid">
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-icon icon-blue"><i class="fas fa-headset"></i></div>
+              <div class="job-header-info">
+                <h3 class="job-title">IT Support / Helpdesk</h3>
+                <div class="job-salary">Rp 3.5 - 8 Juta / Bulan</div>
+              </div>
+            </div>
+            <p class="job-desc">Memberikan dukungan teknis kepada pengguna komputer, troubleshooting hardware/software, dan memastikan infrastruktur IT berjalan lancar.</p>
+            <div class="job-skills">
+              <span class="skill-tag">Troubleshooting</span>
+              <span class="skill-tag">Windows/Linux</span>
+              <span class="skill-tag">Jaringan</span>
+              <span class="skill-tag">Komunikasi</span>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-icon icon-purple"><i class="fas fa-network-wired"></i></div>
+              <div class="job-header-info">
+                <h3 class="job-title">Network Administrator</h3>
+                <div class="job-salary">Rp 4 - 10 Juta / Bulan</div>
+              </div>
+            </div>
+            <p class="job-desc">Mengelola, konfigurasi, dan memaintain infrastruktur jaringan komputer perusahaan termasuk router, switch, firewall, dan VPN.</p>
+            <div class="job-skills">
+              <span class="skill-tag">Mikrotik/Cisco</span>
+              <span class="skill-tag">Subnetting</span>
+              <span class="skill-tag">Firewall</span>
+              <span class="skill-tag">VPN</span>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-icon icon-green"><i class="fas fa-video"></i></div>
+              <div class="job-header-info">
+                <h3 class="job-title">Operator CCTV & Security</h3>
+                <div class="job-salary">Rp 3 - 6 Juta / Bulan</div>
+              </div>
+            </div>
+            <p class="job-desc">Memantau sistem CCTV, melakukan instalasi dan konfigurasi kamera IP, DVR/NVR, dan sistem keamanan berbasis jaringan.</p>
+            <div class="job-skills">
+              <span class="skill-tag">CCTV/DVR</span>
+              <span class="skill-tag">IP Camera</span>
+              <span class="skill-tag">Jaringan Dasar</span>
+              <span class="skill-tag">Kabel</span>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-icon icon-amber"><i class="fas fa-satellite-dish"></i></div>
+              <div class="job-header-info">
+                <h3 class="job-title">Teknisi Fiber Optik / ISP</h3>
+                <div class="job-salary">Rp 4 - 9 Juta / Bulan</div>
+              </div>
+            </div>
+            <p class="job-desc">Instalasi, penyambungan, dan maintenance kabel fiber optik untuk jaringan ISP (internet service provider) atau telekomunikasi.</p>
+            <div class="job-skills">
+              <span class="skill-tag">Splicing</span>
+              <span class="skill-tag">OTDR</span>
+              <span class="skill-tag">OPM</span>
+              <span class="skill-tag">FTTH</span>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-icon icon-cyan"><i class="fab fa-linux"></i></div>
+              <div class="job-header-info">
+                <h3 class="job-title">Linux System Administrator</h3>
+                <div class="job-salary">Rp 6 - 15 Juta / Bulan</div>
+              </div>
+            </div>
+            <p class="job-desc">Mengelola server Linux, konfigurasi layanan (web, email, database), monitoring, backup, dan keamanan sistem server.</p>
+            <div class="job-skills">
+              <span class="skill-tag">Linux Server</span>
+              <span class="skill-tag">Bash Scripting</span>
+              <span class="skill-tag">Apache/Nginx</span>
+              <span class="skill-tag">Security</span>
+            </div>
+          </div>
+
+          <div class="job-card">
+            <div class="job-header">
+              <div class="job-icon icon-red"><i class="fas fa-shield-alt"></i></div>
+              <div class="job-header-info">
+                <h3 class="job-title">Network Security Analyst</h3>
+                <div class="job-salary">Rp 8 - 25 Juta / Bulan</div>
+              </div>
+            </div>
+            <p class="job-desc">Menganalisis dan mengamankan infrastruktur jaringan dari ancaman siber, vulnerability assessment, dan implementasi keamanan.</p>
+            <div class="job-skills">
+              <span class="skill-tag">Firewall</span>
+              <span class="skill-tag">IDS/IPS</span>
+              <span class="skill-tag">Ethical Hacking</span>
+              <span class="skill-tag">SIEM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-money-bill-wave"></i></div>
+          <div>
+            <h2 class="card-title">Tabel Gaji Posisi TKJ (2025)</h2>
+            <p class="card-subtitle">Estimasi rentang gaji industri berdasarkan tingkat pengalaman karir.</p>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="salary-table">
+            <thead>
+              <tr>
+                <th>Posisi Pekerjaan</th>
+                <th>Fresh Graduate</th>
+                <th>1 - 3 Tahun</th>
+                <th>3 - 5 Tahun</th>
+                <th>5+ Tahun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="pos-name"><i class="fas fa-headset table-pos-icon"></i> IT Support</td>
+                <td class="salary-range">3 - 4 Juta</td>
+                <td class="salary-range">4 - 6 Juta</td>
+                <td class="salary-range">6 - 9 Juta</td>
+                <td class="salary-range">9 - 15 Juta</td>
+              </tr>
+              <tr>
+                <td class="pos-name"><i class="fas fa-network-wired table-pos-icon"></i> Network Technician</td>
+                <td class="salary-range">3.5 - 5 Juta</td>
+                <td class="salary-range">5 - 8 Juta</td>
+                <td class="salary-range">8 - 12 Juta</td>
+                <td class="salary-range">12 - 20 Juta</td>
+              </tr>
+              <tr>
+                <td class="pos-name"><i class="fas fa-satellite-dish table-pos-icon"></i> Teknisi Fiber Optik</td>
+                <td class="salary-range">3 - 5 Juta</td>
+                <td class="salary-range">5 - 7 Juta</td>
+                <td class="salary-range">7 - 10 Juta</td>
+                <td class="salary-range">10 - 15 Juta</td>
+              </tr>
+              <tr>
+                <td class="pos-name"><i class="fab fa-linux table-pos-icon"></i> Linux Sysadmin</td>
+                <td class="salary-range">4 - 6 Juta</td>
+                <td class="salary-range">6 - 10 Juta</td>
+                <td class="salary-range">10 - 18 Juta</td>
+                <td class="salary-range">18 - 35 Juta</td>
+              </tr>
+              <tr>
+                <td class="pos-name"><i class="fas fa-shield-alt table-pos-icon"></i> Network Security</td>
+                <td class="salary-range">5 - 8 Juta</td>
+                <td class="salary-range">8 - 15 Juta</td>
+                <td class="salary-range">15 - 25 Juta</td>
+                <td class="salary-range">25 - 50 Juta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-note">
+          <i class="fas fa-info-circle"></i> Data estimasi berdasarkan survey 2024-2025. Aktual bervariasi tergantung lokasi perusahaan, skala bisnis, dan hasil negosiasi.
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: TIPS CV ATS -->
+    <section class="tab-panel" id="tab-cv">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-robot"></i></div>
+          <div>
+            <h2 class="card-title">Cara Membuat CV yang Lolos ATS</h2>
+            <p class="card-subtitle">ATS (Applicant Tracking System) menyaring 75% CV sebelum dibaca tim rekruiter. Ikuti langkah optimalisasi berikut:</p>
+          </div>
+        </div>
+        <div class="tips-list">
+          <div class="tip-item">
+            <div class="tip-num">1</div>
+            <div class="tip-content">
+              <h4>Gunakan Format File yang Tepat</h4>
+              <p>Simpan CV dalam format <strong>.PDF</strong> atau <strong>.DOCX</strong>. Hindari gambar, tabel kompleks, header/footer, dan kolom bercabang yang membingungkan sistem pembacaan ATS.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-num">2</div>
+            <div class="tip-content">
+              <h4>Gunakan Kata Kunci dari Job Description</h4>
+              <p>Sematkan kata kunci persis sesuai kualifikasi. Contoh keyword penting: <strong>MikroTik</strong>, <strong>Cisco</strong>, <strong>Linux Server</strong>, <strong>Network Administrator</strong>, <strong>IP Subnetting</strong>.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-num">3</div>
+            <div class="tip-content">
+              <h4>Struktur CV Standar & Teratur</h4>
+              <p>Urutan direkomendasikan: <strong>Nama & Kontak → Ringkasan Profesional → Pengalaman Kerja → Pendidikan → Skill Teknis → Sertifikasi → Proyek</strong>.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-num">4</div>
+            <div class="tip-content">
+              <h4>Gunakan Bullet Points & Action Verbs</h4>
+              <p>Gunakan kata kerja aktif profesional: <em>Mengkonfigurasi</em>, <em>Mengimplementasikan</em>, <em>Mengelola</em>, <em>Mengoptimalkan</em>, <em>Membangun</em>.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-num">5</div>
+            <div class="tip-content">
+              <h4>Cantumkan Skill Teknis Secara Spesifik</h4>
+              <p>Tulis detail lengkap: <strong>MikroTik RouterOS</strong>, <strong>Cisco IOS</strong>, <strong>Ubuntu Server 22.04</strong>, <strong>Fusion Splicing</strong>, alih-alih sekadar "Jaringan Komputer".</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-num">6</div>
+            <div class="tip-content">
+              <h4>Sertakan Pencapaian Terukur (Metrik)</h4>
+              <p>Ubah tugas menjadi pencapaian: <em>"Mengelola jaringan 150 node, meningkatkan uptime dari 95% menjadi 99.8%, menghemat biaya ISP 30%"</em>.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-num">7</div>
+            <div class="tip-content">
+              <h4>Optimalkan Ukuran & Layout CV</h4>
+              <p>Fresh graduate cukup <strong>1 halaman</strong>. Pengalaman >3 tahun maks 2 halaman. Ukuran file <strong>&lt; 2MB</strong>. Font standar: Arial, Calibri, Inter (10-12pt).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+          <div>
+            <h2 class="card-title">Contoh Skill Teknis untuk CV TKJ</h2>
+            <p class="card-subtitle">Kelompokkan keahlian Anda ke dalam kategori terstruktur berikut:</p>
+          </div>
+        </div>
+        <div class="skill-categories-grid">
+          <div class="skill-cat-card">
+            <div class="skill-cat-title"><i class="fas fa-network-wired"></i> Jaringan & Infrastruktur</div>
+            <div class="job-skills">
+              <span class="skill-tag">MikroTik RouterOS</span>
+              <span class="skill-tag">Cisco IOS</span>
+              <span class="skill-tag">IPv4/IPv6</span>
+              <span class="skill-tag">Subnetting</span>
+              <span class="skill-tag">VLAN</span>
+              <span class="skill-tag">VPN</span>
+              <span class="skill-tag">Firewall</span>
+              <span class="skill-tag">WiFi 6</span>
+            </div>
+          </div>
+
+          <div class="skill-cat-card">
+            <div class="skill-cat-title"><i class="fab fa-linux"></i> Server & Sistem Operasi</div>
+            <div class="job-skills">
+              <span class="skill-tag">Ubuntu Server</span>
+              <span class="skill-tag">Debian Linux</span>
+              <span class="skill-tag">Windows Server</span>
+              <span class="skill-tag">Apache/Nginx</span>
+              <span class="skill-tag">SSH</span>
+              <span class="skill-tag">DNS/DHCP</span>
+            </div>
+          </div>
+
+          <div class="skill-cat-card">
+            <div class="skill-cat-title"><i class="fas fa-satellite-dish"></i> Fiber Optik & Cabling</div>
+            <div class="job-skills">
+              <span class="skill-tag">Fusion Splicing</span>
+              <span class="skill-tag">OTDR</span>
+              <span class="skill-tag">OPM</span>
+              <span class="skill-tag">Fiber Termination</span>
+              <span class="skill-tag">Crimping UTP</span>
+            </div>
+          </div>
+
+          <div class="skill-cat-card">
+            <div class="skill-cat-title"><i class="fas fa-tools"></i> Monitoring & Software Tools</div>
+            <div class="job-skills">
+              <span class="skill-tag">Wireshark</span>
+              <span class="skill-tag">Nmap</span>
+              <span class="skill-tag">The Dude</span>
+              <span class="skill-tag">PRTG</span>
+              <span class="skill-tag">Packet Tracer</span>
+              <span class="skill-tag">GNS3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: INTERVIEW Q&A -->
+    <section class="tab-panel" id="tab-interview">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-comments"></i></div>
+          <div>
+            <h2 class="card-title">Interview Q&A - IT Support & Teknisi Jaringan</h2>
+            <p class="card-subtitle">Panduan jawaban taktis untuk pertanyaan wawancara HR dan wawancara teknis.</p>
+          </div>
+        </div>
+
+        <div class="interview-section">
+          <h3 class="interview-title"><i class="fas fa-user-check"></i> Pertanyaan HR & Umum</h3>
+          <div class="qa-list" id="qalist-hr"></div>
+        </div>
+
+        <div class="interview-section">
+          <h3 class="interview-title"><i class="fas fa-laptop-code"></i> Pertanyaan Teknis Jaringan</h3>
+          <div class="qa-list" id="qalist-tech"></div>
+        </div>
+
+        <div class="interview-section">
+          <h3 class="interview-title"><i class="fas fa-ethernet"></i> Pertanyaan Fiber Optik</h3>
+          <div class="qa-list" id="qalist-fiber"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SERTIFIKASI -->
+    <section class="tab-panel" id="tab-cert">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-certificate"></i></div>
+          <div>
+            <h2 class="card-title">Sertifikasi yang Direkomendasikan untuk TKJ</h2>
+            <p class="card-subtitle">Sertifikasi kredibel untuk meningkatkan nilai tawar dan validasi skill Anda di industri.</p>
+          </div>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-icon icon-red"><i class="fas fa-certificate"></i></div>
+            <div class="cert-info">
+              <div class="cert-name">MTCNA (MikroTik)</div>
+              <div class="cert-org">MikroTik Academy</div>
+              <span class="cert-badge badge-red">Entry Level</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon icon-blue"><i class="fas fa-shield-alt"></i></div>
+            <div class="cert-info">
+              <div class="cert-name">CCNA (Cisco)</div>
+              <div class="cert-org">Cisco Systems</div>
+              <span class="cert-badge badge-blue">Associate</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon icon-amber"><i class="fas fa-network-wired"></i></div>
+            <div class="cert-info">
+              <div class="cert-name">CompTIA Network+</div>
+              <div class="cert-org">CompTIA</div>
+              <span class="cert-badge badge-amber">Vendor Neutral</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon icon-green"><i class="fas fa-server"></i></div>
+            <div class="cert-info">
+              <div class="cert-name">CompTIA A+</div>
+              <div class="cert-org">CompTIA</div>
+              <span class="cert-badge badge-green">Entry Level</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon icon-purple"><i class="fab fa-linux"></i></div>
+            <div class="cert-info">
+              <div class="cert-name">LPIC-1 / Linux+</div>
+              <div class="cert-org">LPI / CompTIA</div>
+              <span class="cert-badge badge-purple">Linux</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon icon-cyan"><i class="fas fa-graduation-cap"></i></div>
+            <div class="cert-info">
+              <div class="cert-name">Sertifikasi BNSP TKJ</div>
+              <div class="cert-org">Badan Nasional Sertifikasi Profesi</div>
+              <span class="cert-badge badge-cyan">Nasional</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tips-box">
+          <div class="tips-box-title"><i class="fas fa-lightbulb"></i> Tips Strategi Sertifikasi</div>
+          <ul class="tips-box-list">
+            <li>Mulai dari <strong>MTCNA</strong> atau <strong>CompTIA A+</strong> sebagai bukti fondasi kompetensi awal.</li>
+            <li>Sertifikasi <strong>CCNA</strong> sangat diperhitungkan oleh perusahaan korporasi dan vendor jaringan skala besar.</li>
+            <li>Sertifikat resmi <strong>BNSP</strong> sangat krusial untuk persetujuan UKK dan rekognisi standar industri nasional.</li>
+            <li>Kombinasikan 2-3 sertifikasi bertingkat untuk memaksimalkan daya tawar dalam negosiasi gaji.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: SOFT SKILLS -->
+    <section class="tab-panel" id="tab-softskill">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fas fa-star"></i></div>
+          <div>
+            <h2 class="card-title">Soft Skills Penting untuk Karir TKJ</h2>
+            <p class="card-subtitle">Kemampuan non-teknis yang membedakan teknisi biasa dengan profesional IT unggulan.</p>
+          </div>
+        </div>
+        <div class="soft-grid">
+          <div class="soft-card">
+            <div class="soft-emoji">🗣️</div>
+            <h3 class="soft-title">Komunikasi Efektif</h3>
+            <p class="soft-desc">Kemampuan menyederhanakan dan menjelaskan masalah teknis rumit kepada kustomer/non-teknis dengan jelas.</p>
+          </div>
+
+          <div class="soft-card">
+            <div class="soft-emoji">🔍</div>
+            <h3 class="soft-title">Problem Solving</h3>
+            <p class="soft-desc">Berpikir analitis dan tersistem dalam melacak sumber kegagalan jaringan secara cepat dan efisien.</p>
+          </div>
+
+          <div class="soft-card">
+            <div class="soft-emoji">📚</div>
+            <h3 class="soft-title">Kemauan Belajar (Continuous Learning)</h3>
+            <p class="soft-desc">Industri IT sangat cepat berubah. Terus adaptif terhadap tren cloud, cybersecurity, AI, dan IoT.</p>
+          </div>
+
+          <div class="soft-card">
+            <div class="soft-emoji">⏰</div>
+            <h3 class="soft-title">Manajemen Waktu</h3>
+            <p class="soft-desc">Mampu menentukan prioritas penanganan insiden (SLA) dan mengelola proyek infrastruktur secara teratur.</p>
+          </div>
+
+          <div class="soft-card">
+            <div class="soft-emoji">🤝</div>
+            <h3 class="soft-title">Teamwork & Kolaborasi</h3>
+            <p class="soft-desc">Mampu berkoordinasi harmonis dalam tim IT, tim lintas divisi, maupun pihak ketiga (vendor/ISP).</p>
+          </div>
+
+          <div class="soft-card">
+            <div class="soft-emoji">😌</div>
+            <h3 class="soft-title">Kesabaran & Ketelitian</h3>
+            <p class="soft-desc">Sabar menghadapi insiden rumit. Ketelitian tinggi mencegah kesalahan konfigurasi fatal di sistem produksi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

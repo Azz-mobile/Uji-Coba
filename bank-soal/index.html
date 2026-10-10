@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Soal AZZ - Network & IT Learning Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">AZZ</span>
+                    <span class="brand-sub">Learning Hub</span>
+                </div>
+            </a>
+            
+            <div class="nav-actions">
+                <a href="../index.html" class="btn-nav btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="btn-text">Beranda</span>
+                </a>
+                <button class="btn-nav btn-theme" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="page-header">
+        <div class="header-container">
+            <div class="badge-header">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Platform Latihan TKJ & IT Interaktif</span>
+            </div>
+            <h1 class="page-title">Bank Soal <span>AZZ Hub</span></h1>
+            <p class="page-desc">Kumpulan soal latihan TKJ dari kelas X, XI, XII hingga persiapan UKK dan sertifikasi BNSP secara terstruktur dan komprehensif.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Stats Dashboard -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card active" data-filter="all" onclick="filterKelas('all')">
+                    <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">150+</span>
+                        <span class="stat-label">Total Soal</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-filter="X" onclick="filterKelas('X')">
+                    <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">30</span>
+                        <span class="stat-label">Kelas X</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-filter="XI" onclick="filterKelas('XI')">
+                    <div class="stat-icon"><i class="fas fa-server"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">45</span>
+                        <span class="stat-label">Kelas XI</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-filter="XII" onclick="filterKelas('XII')">
+                    <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">40</span>
+                        <span class="stat-label">Kelas XII</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-filter="UKK" onclick="filterKelas('UKK')">
+                    <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">35</span>
+                        <span class="stat-label">UKK / BNSP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter Bar -->
+        <section class="filter-section">
+            <div class="filter-controls">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Cari pertanyaan, kata kunci, atau materi..." autocomplete="off">
+                    <button class="clear-search" id="clearSearch" aria-label="Clear Search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="select-group">
+                    <div class="select-wrapper">
+                        <i class="fas fa-signal select-icon"></i>
+                        <select class="filter-select" id="diffFilter">
+                            <option value="all">Semua Kesulitan</option>
+                            <option value="easy">Mudah</option>
+                            <option value="medium">Sedang</option>
+                            <option value="hard">Sulit</option>
+                        </select>
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <i class="fas fa-folder select-icon"></i>
+                        <select class="filter-select" id="topicFilter">
+                            <option value="all">Semua Topik</option>
+                            <option value="jaringan">Jaringan Dasar</option>
+                            <option value="mikrotik">Mikrotik</option>
+                            <option value="linux">Linux Server</option>
+                            <option value="cisco">Cisco</option>
+                            <option value="fiber">Fiber Optik</option>
+                            <option value="security">Keamanan Jaringan</option>
+                            <option value="hardware">Hardware</option>
+                            <option value="wireless">Wireless</option>
+                        </select>
+                        <i class="fas fa-chevron-down arrow-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs" id="categoryTabs">
+                <button class="cat-tab active" data-kelas="all" onclick="selectKelas(this, 'all')">
+                    <i class="fas fa-globe"></i> Semua
+                </button>
+                <button class="cat-tab" data-kelas="X" onclick="selectKelas(this, 'X')">
+                    Kelas X
+                </button>
+                <button class="cat-tab" data-kelas="XI" onclick="selectKelas(this, 'XI')">
+                    Kelas XI
+                </button>
+                <button class="cat-tab" data-kelas="XII" onclick="selectKelas(this, 'XII')">
+                    Kelas XII
+                </button>
+                <button class="cat-tab" data-kelas="UKK" onclick="selectKelas(this, 'UKK')">
+                    UKK TKJ
+                </button>
+                <button class="cat-tab" data-kelas="BNSP" onclick="selectKelas(this, 'BNSP')">
+                    BNSP TKJ
+                </button>
+            </div>
+        </section>
+
+        <!-- Question Grid Container -->
+        <section class="soal-section">
+            <div class="soal-header-info">
+                <span class="soal-count" id="soalCount">Menampilkan 0 Soal</span>
+            </div>
+            <div class="soal-grid" id="soalGrid">
+                <!-- Cards injected via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 <strong>AZZ Hub</strong>. Powered by Modern Web Technology.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>

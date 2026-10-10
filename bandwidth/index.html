@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZZ - Bandwidth Calculator & Network Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">
+        <div class="brand-logo">
+          <i class="fas fa-network-wired"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">AZZ</span>
+          <span class="brand-sub">Network Tools</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="../index.html" class="btn-nav">
+          <i class="fas fa-house"></i>
+          <span>Beranda</span>
+        </a>
+        <button class="btn-theme" id="themeToggle" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-container">
+      <div class="badge">
+        <i class="fas fa-network-wired"></i> Network Bandwidth Toolkit
+      </div>
+      <h1 class="hero-title">AZZ Bandwidth <span>Calculator</span></h1>
+      <p class="hero-subtitle">
+        Kalkulasi kecepatan transfer, konversi unit bandwidth, hitung pembagian user, dan estimasi konsumsi data bulanan secara akurat dan responsif.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-container">
+
+    <!-- Row 1: Speed Calculator & Bandwidth Converter -->
+    <div class="grid-layout grid-2">
+      
+      <!-- Card 1: Download / Upload Speed Calculator -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-cloud-arrow-down"></i>
+          </div>
+          <div>
+            <h2 class="card-title">Transfer Speed Calculator</h2>
+            <p class="card-desc">Hitung estimasi waktu pengiriman/pengunduhan file.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label" for="fileSize">Ukuran File</label>
+            <div class="input-group">
+              <input type="number" class="form-input" id="fileSize" placeholder="100" min="0" step="any">
+              <select class="form-select" id="fileSizeUnit">
+                <option value="1">KB</option>
+                <option value="1024" selected>MB</option>
+                <option value="1048576">GB</option>
+                <option value="1073741824">TB</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="connSpeed">Kecepatan Koneksi</label>
+            <div class="input-group">
+              <input type="number" class="form-input" id="connSpeed" placeholder="10" min="0" step="any">
+              <select class="form-select" id="connUnit">
+                <option value="0.001">Kbps</option>
+                <option value="1" selected>Mbps</option>
+                <option value="1000">Gbps</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="efficiency">Efisiensi Jaringan (%)</label>
+            <div class="input-group full-width">
+              <input type="number" class="form-input" id="efficiency" value="80" min="1" max="100">
+            </div>
+          </div>
+
+          <button class="btn-primary" onclick="calcDownload()">
+            <i class="fas fa-calculator"></i>
+            <span>Hitung Waktu Transfer</span>
+          </button>
+
+          <div class="result-cards">
+            <div class="res-card">
+              <span class="res-label">Detik</span>
+              <span class="res-value" id="rSec">-</span>
+            </div>
+            <div class="res-card">
+              <span class="res-label">Menit</span>
+              <span class="res-value" id="rMin">-</span>
+            </div>
+            <div class="res-card">
+              <span class="res-label">Jam</span>
+              <span class="res-value" id="rHour">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: Bandwidth Converter -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-right-left"></i>
+          </div>
+          <div>
+            <h2 class="card-title">Bandwidth Converter</h2>
+            <p class="card-desc">Konversi nilai bandwidth ke berbagai satuan bit dan byte.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label" for="bwValue">Nilai Bandwidth</label>
+            <div class="input-group">
+              <input type="number" class="form-input" id="bwValue" placeholder="100" min="0" step="any" oninput="convertBW()">
+              <select class="form-select" id="bwFromUnit" onchange="convertBW()">
+                <option value="bps">bps</option>
+                <option value="kbps">Kbps</option>
+                <option value="mbps" selected>Mbps</option>
+                <option value="gbps">Gbps</option>
+                <option value="kBps">KBps</option>
+                <option value="MBps">MBps</option>
+                <option value="GBps">GBps</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Hasil Konversi</label>
+            <div class="code-box" id="bwOutput">Masukkan nilai untuk mengkonversi.</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Row 2: Bandwidth per User & Monthly Data Usage -->
+    <div class="grid-layout grid-2">
+
+      <!-- Card 3: Bandwidth per User Calculator -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div>
+            <h2 class="card-title">Bandwidth per User</h2>
+            <p class="card-desc">Hitung alokasi bandwidth optimal untuk tiap pengguna.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label" for="totalBW">Total Bandwidth (Mbps)</label>
+            <input type="number" class="form-input" id="totalBW" placeholder="100" min="0" step="any">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userCount">Jumlah User Aktif</label>
+            <input type="number" class="form-input" id="userCount" placeholder="50" min="1">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="shareMethod">Metode Pembagian</label>
+            <select class="form-select full-width" id="shareMethod">
+              <option value="equal">Sama Rata</option>
+              <option value="contention">Contention Ratio 1:1</option>
+              <option value="contention5">Contention Ratio 1:5</option>
+            </select>
+          </div>
+
+          <button class="btn-primary" onclick="calcPerUser()">
+            <i class="fas fa-sliders"></i>
+            <span>Hitung Bandwidth per User</span>
+          </button>
+
+          <div class="form-group" style="margin-top: 1.25rem;">
+            <div class="code-box" id="perUserOutput">Klik hitung untuk melihat hasil.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: Estimasi Penggunaan Data Bulanan -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <div>
+            <h2 class="card-title">Estimasi Data Bulanan</h2>
+            <p class="card-desc">Simulasi pemakaian kuota harian dan kebutuhan bulanan.</p>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="grid-inputs">
+            <div class="form-group">
+              <label class="form-label" for="browsingHour">Browsing (Jam/Hari)</label>
+              <input type="number" class="form-input" id="browsingHour" value="2" min="0" max="24" step="0.5" oninput="calcMonthly()">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="streamingHour">Streaming HD (Jam/Hari)</label>
+              <input type="number" class="form-input" id="streamingHour" value="1" min="0" max="24" step="0.5" oninput="calcMonthly()">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="videoCallHour">Video Call (Jam/Hari)</label>
+              <input type="number" class="form-input" id="videoCallHour" value="0.5" min="0" max="24" step="0.5" oninput="calcMonthly()">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="gamingHour">Gaming (Jam/Hari)</label>
+              <input type="number" class="form-input" id="gamingHour" value="1" min="0" max="24" step="0.5" oninput="calcMonthly()">
+            </div>
+          </div>
+
+          <div id="monthlyResult" class="monthly-result-wrapper"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Row 3: Speed Comparison Chart -->
+    <section class="card full-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <i class="fas fa-gauge-high"></i>
+        </div>
+        <div>
+          <h2 class="card-title">Perbandingan Kecepatan Koneksi</h2>
+          <p class="card-desc">Perbandingan visual kapasitas bandwidth dari teknologi Dial-up hingga 5G.</p>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="speed-bars-container" id="speedComparison"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2026 <strong>AZZ Network Tools</strong>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

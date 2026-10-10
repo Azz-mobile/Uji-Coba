@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Praktikum TKJ - AZZ Learning Hub</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- HEADER NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <span class="logo-text">AZZ <span>Hub</span></span>
+            </a>
+            
+            <div class="nav-controls">
+                <a href="#" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Beranda</span>
+                </a>
+                <button class="btn-theme" id="themeToggle" aria-label="Toggle Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="btn-mobile-menu" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <div class="header-badge">
+                <i class="fas fa-book-reader"></i> Modul Praktikum Interactive
+            </div>
+            <h1 class="page-title">Panduan <span>Praktikum TKJ</span></h1>
+            <p class="page-desc">Panduan interaktif & step-by-step lengkap untuk semua praktikum Teknik Komputer dan Jaringan bersama AZZ.</p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="praktikum-content">
+        <div class="container layout">
+            <!-- SIDEBAR NAVIGATION -->
+            <aside class="prak-sidebar" id="prakSidebar">
+                <div class="prak-menu">
+                    <div class="prak-menu-header">
+                        <i class="fas fa-flask"></i>
+                        <span>Daftar Praktikum</span>
+                    </div>
+                    <nav class="prak-menu-list">
+                        <button class="prak-menu-item active" onclick="showPrak('crimping', event)">
+                            <i class="fas fa-cut"></i>
+                            <span class="menu-label">Crimping Kabel LAN</span>
+                            <span class="prak-num">1</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('mikrotik', event)">
+                            <i class="fas fa-router"></i>
+                            <span class="menu-label">Konfigurasi MikroTik</span>
+                            <span class="prak-num">2</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('ubuntu', event)">
+                            <i class="fab fa-ubuntu"></i>
+                            <span class="menu-label">Instalasi Ubuntu Server</span>
+                            <span class="prak-num">3</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('dhcp', event)">
+                            <i class="fas fa-server"></i>
+                            <span class="menu-label">Konfigurasi DHCP</span>
+                            <span class="prak-num">4</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('pppoe', event)">
+                            <i class="fas fa-plug"></i>
+                            <span class="menu-label">Konfigurasi PPPoE</span>
+                            <span class="prak-num">5</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('vlan', event)">
+                            <i class="fas fa-code-branch"></i>
+                            <span class="menu-label">Konfigurasi VLAN</span>
+                            <span class="prak-num">6</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('fiber', event)">
+                            <i class="fas fa-satellite-dish"></i>
+                            <span class="menu-label">Fiber Optik Dasar</span>
+                            <span class="prak-num">7</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('splice', event)">
+                            <i class="fas fa-compress-alt"></i>
+                            <span class="menu-label">Fusion Splicing</span>
+                            <span class="prak-num">8</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('opm', event)">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="menu-label">Penggunaan OPM</span>
+                            <span class="prak-num">9</span>
+                        </button>
+                        <button class="prak-menu-item" onclick="showPrak('otdr', event)">
+                            <i class="fas fa-wave-square"></i>
+                            <span class="menu-label">Penggunaan OTDR</span>
+                            <span class="prak-num">10</span>
+                        </button>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- BACKDROP FOR MOBILE MENU -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- CONTENT PANELS -->
+            <section class="prak-content">
+                <!-- 1. CRIMPING -->
+                <article class="prak-panel active" id="prak-crimping">
+                    <div class="prak-card">
+                        <div class="prak-card-header">
+                            <div class="prak-card-icon"><i class="fas fa-cut"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Crimping Kabel LAN (UTP)</h2>
+                                <div class="prak-card-sub">Praktikum Jaringan Dasar • Kelas X TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <i class="fas fa-clock" style="color:var(--cyan)"></i>
+                                    <div class="info-label">Estimasi Waktu</div>
+                                    <div class="info-val">60 Menit</div>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-signal" style="color:var(--success)"></i>
+                                    <div class="info-label">Tingkat</div>
+                                    <div class="info-val">Dasar</div>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-users" style="color:var(--warning)"></i>
+                                    <div class="info-label">Kelompok</div>
+                                    <div class="info-val">2-3 Orang</div>
+                                </div>
+                            </div>
+                            
+                            <div class="section-title"><i class="fas fa-tools"></i> Alat & Bahan</div>
+                            <div class="tools-list">
+                                <span class="tool-tag">Kabel UTP Cat5e/Cat6</span>
+                                <span class="tool-tag">Crimping Tool</span>
+                                <span class="tool-tag">Connector RJ-45</span>
+                                <span class="tool-tag">Cable Tester</span>
+                                <span class="tool-tag">Cutter/Stripper</span>
+                                <span class="tool-tag">Penggaris</span>
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="section-title"><i class="fas fa-palette"></i> Urutan Warna Kabel</div>
+                            <div class="crimping-diagram">
+                                <div class="crimp-box">
+                                    <div class="crimp-title">Straight-Through (T568B)</div>
+                                    <div class="wire"><div class="wire-color" style="background:#F97316;border:1px solid #ccc"></div><span class="wire-name">Putih-Orange</span><span class="wire-num">Pin 1</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#F97316"></div><span class="wire-name">Orange</span><span class="wire-num">Pin 2</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#22D3EE;border:1px solid #ccc"></div><span class="wire-name">Putih-Hijau</span><span class="wire-num">Pin 3</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#2563EB"></div><span class="wire-name">Biru</span><span class="wire-num">Pin 4</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#2563EB;border:1px solid #ccc"></div><span class="wire-name">Putih-Biru</span><span class="wire-num">Pin 5</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#22D3EE"></div><span class="wire-name">Hijau</span><span class="wire-num">Pin 6</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#A78BFA;border:1px solid #ccc"></div><span class="wire-name">Putih-Coklat</span><span class="wire-num">Pin 7</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#A16207"></div><span class="wire-name">Coklat</span><span class="wire-num">Pin 8</span></div>
+                                </div>
+                                <div class="crimp-box">
+                                    <div class="crimp-title">Cross-Over (T568A → T568B)</div>
+                                    <div class="wire"><div class="wire-color" style="background:#22D3EE;border:1px solid #ccc"></div><span class="wire-name">Putih-Hijau</span><span class="wire-num">Pin 1</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#22D3EE"></div><span class="wire-name">Hijau</span><span class="wire-num">Pin 2</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#F97316;border:1px solid #ccc"></div><span class="wire-name">Putih-Orange</span><span class="wire-num">Pin 3</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#2563EB"></div><span class="wire-name">Biru</span><span class="wire-num">Pin 4</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#2563EB;border:1px solid #ccc"></div><span class="wire-name">Putih-Biru</span><span class="wire-num">Pin 5</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#F97316"></div><span class="wire-name">Orange</span><span class="wire-num">Pin 6</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#A78BFA;border:1px solid #ccc"></div><span class="wire-name">Putih-Coklat</span><span class="wire-num">Pin 7</span></div>
+                                    <div class="wire"><div class="wire-color" style="background:#A16207"></div><span class="wire-name">Coklat</span><span class="wire-num">Pin 8</span></div>
+                                </div>
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="section-title"><i class="fas fa-list-ol"></i> Langkah Praktikum</div>
+                            <div class="steps-container">
+                                <div class="step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Persiapan & Pengukuran Kabel</div>
+                                        <div class="step-desc">Siapkan kabel UTP sepanjang yang diperlukan (minimal 1 meter untuk latihan). Gunakan cutter untuk memotong kabel dengan bersih.</div>
+                                        <div class="step-img"><i class="fas fa-ruler"></i><span>Ilustrasi: Pengukuran kabel UTP</span></div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Kupas Outer Jacket</div>
+                                        <div class="step-desc">Kupas lapisan luar kabel (outer jacket) sepanjang ± 2-3 cm menggunakan stripper tool atau crimping tool. Hati-hati jangan sampai merusak isolasi kabel dalam.</div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Pisahkan & Luruskan Kabel</div>
+                                        <div class="step-desc">Pisahkan 4 pasang kabel twisted pair. Luruskan setiap kabel dan urutkan sesuai standar T568B untuk kabel straight-through.</div>
+                                        <div class="step-img"><i class="fas fa-compress-arrows-alt"></i><span>Ilustrasi: Pengurutan kabel warna</span></div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Potong Rata Kabel</div>
+                                        <div class="step-desc">Setelah kabel diurutkan dengan benar, potong ujung kabel secara rata menggunakan crimping tool. Panjang kabel yang keluar dari jacket ± 1.2 cm.</div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Masukkan ke Connector RJ-45</div>
+                                        <div class="step-desc">Masukkan kabel yang sudah diurutkan ke dalam connector RJ-45. Pastikan setiap kabel masuk ke jalurnya masing-masing dan ujung kabel menyentuh bagian tembaga connector.</div>
+                                        <div class="step-img"><i class="fas fa-plug"></i><span>Ilustrasi: Memasukkan kabel ke connector RJ-45</span></div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">6</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Crimping dengan Crimping Tool</div>
+                                        <div class="step-desc">Masukkan connector ke crimping tool dan tekan dengan kuat hingga terdengar bunyi "klik". Pastikan semua pin tembaga connector menusuk isolasi kabel.</div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">7</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Test dengan Cable Tester</div>
+                                        <div class="step-desc">Masukkan kedua ujung kabel ke cable tester. LED indicator harus menyala berurutan 1-8. Jika salah urutan atau ada yang tidak menyala, proses crimping harus diulang.</div>
+                                        <div class="step-img"><i class="fas fa-check-circle"></i><span>Ilustrasi: Pengujian dengan cable tester</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div><strong>Perhatian:</strong> Pastikan urutan warna kabel benar sebelum di-crimp. Setelah di-crimp, tidak bisa diubah tanpa memotong connector.</div>
+                            </div>
+                            <div class="success-box">
+                                <i class="fas fa-check-circle"></i>
+                                <div><strong>Penggunaan Kabel:</strong> Straight-through untuk PC↔Switch, PC↔Hub. Cross-over untuk PC↔PC, Switch↔Switch (non-uplink), Router↔Router langsung.</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. MIKROTIK -->
+                <article class="prak-panel" id="prak-mikrotik">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#8B5CF6,#2563EB)">
+                            <div class="prak-card-icon"><i class="fas fa-router"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Konfigurasi Dasar MikroTik</h2>
+                                <div class="prak-card-sub">Internet Sharing & DHCP Server • Kelas XI TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="info-row">
+                                <div class="info-item"><i class="fas fa-clock" style="color:var(--cyan)"></i><div class="info-label">Waktu</div><div class="info-val">90 Menit</div></div>
+                                <div class="info-item"><i class="fas fa-signal" style="color:var(--warning)"></i><div class="info-label">Tingkat</div><div class="info-val">Menengah</div></div>
+                                <div class="info-item"><i class="fas fa-users" style="color:var(--success)"></i><div class="info-label">Kelompok</div><div class="info-val">2-3 Orang</div></div>
+                            </div>
+                            <div class="tools-list">
+                                <span class="tool-tag">MikroTik RouterBoard</span>
+                                <span class="tool-tag">Winbox App</span>
+                                <span class="tool-tag">Kabel LAN (Straight)</span>
+                                <span class="tool-tag">PC/Laptop</span>
+                                <span class="tool-tag">Modem ISP</span>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="section-title">Topologi Praktikum</div>
+                            <div class="step-img" style="height:120px;margin-bottom:1rem;">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>Internet → Modem → ether1 [MikroTik] ether2 → Switch → PC Client</span>
+                            </div>
+                            <div class="section-title">Langkah Konfigurasi</div>
+                            <div class="steps-container">
+                                <div class="step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Koneksi Fisik & Reset MikroTik</div>
+                                        <div class="step-desc">Hubungkan: Modem ISP → ether1 MikroTik, PC/Laptop → ether2 MikroTik. Reset MikroTik ke factory default jika diperlukan.</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Reset via tombol RESET di perangkat, atau:
+[admin@MikroTik] > /system reset-configuration</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Login via Winbox</div>
+                                        <div class="step-desc">Buka Winbox, klik "Neighbors" untuk scan, pilih MikroTik, login dengan username admin, password kosong.</div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Set IP Address WAN (ether1)</div>
+                                        <div class="step-desc">Konfigurasi IP address untuk interface WAN (ether1) yang terhubung ke modem/ISP. Bisa menggunakan DHCP client atau IP statis.</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code"># Jika ISP menggunakan DHCP
+/ip dhcp-client add interface=ether1 disabled=no
+
+# Jika menggunakan IP Statis
+/ip address add address=192.168.0.2/24 interface=ether1
+/ip route add gateway=192.168.0.1</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Set IP Address LAN (ether2)</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/ip address add address=192.168.1.1/24 interface=ether2</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi NAT (Internet Sharing)</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/ip firewall nat add chain=srcnat out-interface=ether1 action=masquerade</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">6</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi DHCP Server</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/ip pool add name=dhcp-pool ranges=192.168.1.100-192.168.1.200
+/ip dhcp-server add name=dhcp1 interface=ether2 address-pool=dhcp-pool disabled=no
+/ip dhcp-server network add address=192.168.1.0/24 gateway=192.168.1.1 dns-server=8.8.8.8</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">7</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Set DNS</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/ip dns set servers=8.8.8.8,8.8.4.4 allow-remote-requests=yes</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">8</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Verifikasi & Test</div>
+                                        <div class="step-desc">Test koneksi internet dari PC client. PC harus mendapat IP dari DHCP dan bisa akses internet.</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code"># Test di MikroTik
+/ping 8.8.8.8
+
+# Di PC Client (CMD)
+ipconfig
+ping 8.8.8.8
+ping google.com</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. UBUNTU -->
+                <article class="prak-panel" id="prak-ubuntu">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#F97316,#EF4444)">
+                            <div class="prak-card-icon"><i class="fab fa-ubuntu"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Instalasi Ubuntu Server 22.04 LTS</h2>
+                                <div class="prak-card-sub">Linux Server Administration • Kelas XI TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="tools-list">
+                                <span class="tool-tag">ISO Ubuntu Server 22.04</span>
+                                <span class="tool-tag">VirtualBox / PC Fisik</span>
+                                <span class="tool-tag">Bootable USB (Rufus)</span>
+                                <span class="tool-tag">Min. 20GB Storage</span>
+                                <span class="tool-tag">Min. 2GB RAM</span>
+                            </div>
+                            <div class="steps-container">
+                                <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Download & Persiapan ISO</div><div class="step-desc">Download Ubuntu Server dari ubuntu.com. Buat bootable USB menggunakan Rufus (Windows) atau dd (Linux). Untuk VirtualBox, langsung mount ISO.</div></div></div>
+                                <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Boot dari Media Instalasi</div><div class="step-desc">Set boot priority ke USB/DVD di BIOS/UEFI. Tekan F12 atau F8 saat booting untuk boot menu. Pilih media instalasi Ubuntu.</div></div></div>
+                                <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Pilih Bahasa & Keyboard</div><div class="step-desc">Pilih English untuk bahasa instalasi (rekomendasi). Set keyboard layout sesuai kebutuhan. Pilih keyboard English (US).</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi Jaringan</div>
+                                        <div class="step-desc">Konfigurasi IP address untuk server. Bisa DHCP otomatis atau manual (statis).</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Subnet: 192.168.1.0/24
+Address: 192.168.1.10
+Gateway: 192.168.1.1
+Name Servers: 8.8.8.8, 8.8.4.4</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-title">Partisi Disk</div><div class="step-desc">Untuk praktikum, pilih "Use entire disk" untuk partisi otomatis. Konfirmasi dan lanjutkan instalasi.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">6</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Buat Akun User</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Your name: TKJ Admin
+Server name: tkj-server
+Username: tkjadmin
+Password: (buat password kuat)</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step"><div class="step-num">7</div><div class="step-content"><div class="step-title">Install OpenSSH Server</div><div class="step-desc">Centang "Install OpenSSH server" agar server bisa diakses via SSH dari komputer lain. Pilih "No" untuk import SSH keys (untuk praktikum).</div></div></div>
+                                <div class="step"><div class="step-num">8</div><div class="step-content"><div class="step-title">Proses Instalasi & Reboot</div><div class="step-desc">Tunggu proses instalasi selesai (15-30 menit). Setelah selesai, pilih "Reboot Now". Cabut media instalasi saat diminta.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">9</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Post-Install Configuration</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code"># Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install paket umum
+sudo apt install net-tools curl wget -y
+
+# Cek IP address
+ip addr show
+ip route show
+
+# Tes koneksi
+ping -c 4 8.8.8.8</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. DHCP -->
+                <article class="prak-panel" id="prak-dhcp">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#10B981,#06B6D4)">
+                            <div class="prak-card-icon"><i class="fas fa-server"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Konfigurasi DHCP Server (ISC DHCP)</h2>
+                                <div class="prak-card-sub">Linux Server • Ubuntu/Debian • Kelas XI TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="steps-container">
+                                <div class="step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Instalasi ISC DHCP Server</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">sudo apt update
+sudo apt install isc-dhcp-server -y</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Set Interface DHCP</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">sudo nano /etc/default/isc-dhcp-server
+
+# Ubah baris INTERFACESv4:
+INTERFACESv4="ens33"
+# Ganti ens33 dengan nama interface Anda
+# Cek interface: ip addr</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi DHCP Server</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">sudo nano /etc/dhcp/dhcpd.conf
+
+# Tambahkan konfigurasi:
+default-lease-time 600;
+max-lease-time 7200;
+authoritative;
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.100 192.168.1.200;
+  option routers 192.168.1.1;
+  option domain-name-servers 8.8.8.8, 8.8.4.4;
+  option broadcast-address 192.168.1.255;
+  option domain-name "tkj.local";
+}
+
+# IP Statis untuk perangkat tertentu:
+host printer {
+  hardware ethernet AA:BB:CC:DD:EE:FF;
+  fixed-address 192.168.1.50;
+}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Start & Enable Service</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">sudo systemctl start isc-dhcp-server
+sudo systemctl enable isc-dhcp-server
+sudo systemctl status isc-dhcp-server</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Verifikasi DHCP Lease</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code"># Lihat DHCP lease yang aktif
+cat /var/lib/dhcp/dhcpd.leases
+
+# Atau monitor log
+sudo journalctl -u isc-dhcp-server -f</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. PPPOE -->
+                <article class="prak-panel" id="prak-pppoe">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#2563EB,#8B5CF6)">
+                            <div class="prak-card-icon"><i class="fas fa-plug"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Konfigurasi PPPoE di MikroTik</h2>
+                                <div class="prak-card-sub">Point-to-Point Protocol over Ethernet • Kelas XII • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="steps-container">
+                                <div class="step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi PPPoE Client (ke ISP)</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/interface pppoe-client add   name=pppoe-isp   interface=ether1   user=username@isp.com   password=password123   disabled=no   add-default-route=yes   use-peer-dns=yes</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Verifikasi Koneksi PPPoE</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/interface pppoe-client print
+/interface pppoe-client monitor pppoe-isp
+# Status harus: connected</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi PPPoE Server (untuk client)</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">/ip pool add name=pppoe-pool ranges=10.0.0.2-10.0.0.254
+/ppp profile add name=pppoe-profile local-address=10.0.0.1 remote-address=pppoe-pool dns-server=8.8.8.8
+/interface pptp-server server set enabled=yes
+/ppp secret add name=user1 password=pass123 service=pppoe profile=pppoe-profile</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. VLAN -->
+                <article class="prak-panel" id="prak-vlan">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#06B6D4,#10B981)">
+                            <div class="prak-card-icon"><i class="fas fa-code-branch"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Konfigurasi VLAN di Cisco Switch</h2>
+                                <div class="prak-card-sub">Virtual LAN • Cisco IOS • Kelas XII TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="steps-container">
+                                <div class="step">
+                                    <div class="step-num">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Buat VLAN di Switch</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Switch> enable
+Switch# configure terminal
+Switch(config)# vlan 10
+Switch(config-vlan)# name VLAN_GURU
+Switch(config)# vlan 20
+Switch(config-vlan)# name VLAN_SISWA
+Switch(config)# vlan 30
+Switch(config-vlan)# name VLAN_ADMIN
+Switch(config)# end</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Assign Port ke VLAN</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Switch(config)# interface range fa0/1-5
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 10
+
+Switch(config)# interface range fa0/6-10
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 20</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Konfigurasi Trunk Port</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Switch(config)# interface gigabitethernet0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk allowed vlan all
+Switch(config-if)# end</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Verifikasi Konfigurasi VLAN</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Switch# show vlan brief
+Switch# show interfaces trunk
+Switch# show running-config</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 7. FIBER -->
+                <article class="prak-panel" id="prak-fiber">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#10B981,#F59E0B)">
+                            <div class="prak-card-icon"><i class="fas fa-satellite-dish"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Pengenalan Fiber Optik & Komponen</h2>
+                                <div class="prak-card-sub">Fiber Optik Dasar • Kelas XI TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="steps-container">
+                                <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Identifikasi Jenis Kabel Fiber</div><div class="step-desc">Identifikasi kabel fiber berdasarkan warna jacket: Kuning = Single Mode, Orange/Aqua = Multi Mode. Perhatikan label pada kabel (9/125 untuk SMF, 50/125 atau 62.5/125 untuk MMF).</div></div></div>
+                                <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Identifikasi Connector</div><div class="step-desc">Kenali jenis connector: SC (kotak besar), LC (kotak kecil), FC (bulat dengan ulir), ST (bayonet), MTP/MPO (banyak fiber).</div><div class="step-img"><i class="fas fa-plug"></i><span>Ilustrasi: Berbagai jenis connector fiber optik</span></div></div></div>
+                                <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Pembersihan Connector</div><div class="step-desc">Bersihkan connector sebelum digunakan menggunakan fiber cleaning pen atau tisu alkohol. Debu bisa meningkatkan redaman secara signifikan.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Inspeksi dengan Fiber Scope</div>
+                                        <div class="step-desc">Gunakan fiber scope atau VFL (Visual Fault Locator) untuk memeriksa kebersihan dan kondisi ujung fiber. JANGAN melihat fiber aktif langsung!</div>
+                                        <div class="warning-box">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <div><strong>BAHAYA!</strong> Jangan pernah melihat ujung fiber optik aktif dengan mata telanjang. Sinar laser dapat merusak retina permanen!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 8. SPLICE -->
+                <article class="prak-panel" id="prak-splice">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">
+                            <div class="prak-card-icon"><i class="fas fa-compress-alt"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Fusion Splicing Fiber Optik</h2>
+                                <div class="prak-card-sub">Teknik Penyambungan Fiber • Kelas XII TKJ • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="tools-list">
+                                <span class="tool-tag">Fusion Splicer</span>
+                                <span class="tool-tag">Fiber Cleaver</span>
+                                <span class="tool-tag">Fiber Stripper</span>
+                                <span class="tool-tag">Alkohol 99%</span>
+                                <span class="tool-tag">Tisu Optik</span>
+                                <span class="tool-tag">Heat Shrink</span>
+                            </div>
+                            <div class="steps-container">
+                                <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Strip Jacket & Buffer</div><div class="step-desc">Kupas outer jacket sepanjang ±5 cm, lalu kupas buffer/coating sampai tersisa serat kaca mentah. Gunakan fiber stripper yang tepat untuk setiap lapisan.</div></div></div>
+                                <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Bersihkan Serat Kaca</div><div class="step-desc">Basahi tisu optik dengan alkohol 99% (IPA). Bersihkan serat dari pangkal ke ujung dengan sekali usap. Jangan mengulang usapan yang sama.</div></div></div>
+                                <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Pasang Heat Shrink Sleeve</div><div class="step-desc">Sebelum cleave, masukkan heat shrink sleeve ke salah satu sisi fiber. Ini penting karena tidak bisa dipasang setelah di-splice.</div></div></div>
+                                <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Cleave Fiber</div><div class="step-desc">Masukkan fiber ke fiber cleaver, tekan tuas cleave dengan halus. Hasil cleave yang bagus: sudut 89.5°-90°, permukaan rata tanpa retakan.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">5</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Proses Fusion Splicing</div>
+                                        <div class="step-desc">Masukkan kedua fiber ke slot fusion splicer. Tutup cover dan jalankan proses fusion (mode otomatis). Splicer akan menyelaraskan dan menyambung fiber dengan panas elektrik.</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Estimasi Loss yang Ditampilkan Splicer:
+Target: < 0.02 dB (excellent)
+Baik  : < 0.05 dB (good)
+Max   : < 0.10 dB (acceptable)</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step"><div class="step-num">6</div><div class="step-content"><div class="step-title">Lindungi dengan Heat Shrink</div><div class="step-desc">Geser heat shrink sleeve ke titik splice. Masukkan ke heat oven splicer selama ±60 detik. Heat shrink akan mengencang dan melindungi splice.</div></div></div>
+                                <div class="step"><div class="step-num">7</div><div class="step-content"><div class="step-title">Verifikasi dengan OTDR/OPM</div><div class="step-desc">Uji hasil splice menggunakan OTDR untuk melihat lokasi dan redaman, atau OPM untuk mengukur total loss.</div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 9. OPM -->
+                <article class="prak-panel" id="prak-opm">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#2563EB,#10B981)">
+                            <div class="prak-card-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Penggunaan OPM (Optical Power Meter)</h2>
+                                <div class="prak-card-sub">Pengukuran Redaman Fiber Optik • Kelas XII • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="steps-container">
+                                <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Persiapan OPM</div><div class="step-desc">Nyalakan OPM dan pilih wavelength yang sesuai: 1310nm atau 1550nm untuk Single Mode, 850nm untuk Multi Mode.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Kalibrasi (Reference Level)</div>
+                                        <div class="step-desc">Sambungkan OLS (Optical Light Source) ke OPM dengan kabel reference yang bersih. Catat nilai referensi ini sebagai baseline 0 dB.</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Contoh: Reference power = -10 dBm
+Ini menjadi titik 0 dB pengukuran</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Pengukuran Redaman</div>
+                                        <div class="step-desc">Sambungkan OLS ke satu ujung link fiber yang akan diukur. Sambungkan OPM ke ujung lainnya. Baca nilai yang ditampilkan OPM.</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Rumus:
+Loss (dB) = Reference Level - Measured Level
+
+Contoh:
+Reference: -10 dBm
+Measured : -13 dBm
+Loss      = -10 - (-13) = 3 dB</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Standar Redaman</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Budget redaman yang acceptable:
+• Splice loss    : < 0.1 dB per splice
+• Connector loss : < 0.5 dB per connector
+• Total fiber    : 0.2-0.35 dB/km (SMF @1310nm)
+• Margin safety  : 3 dB minimum</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 10. OTDR -->
+                <article class="prak-panel" id="prak-otdr">
+                    <div class="prak-card">
+                        <div class="prak-card-header" style="background:linear-gradient(135deg,#8B5CF6,#06B6D4)">
+                            <div class="prak-card-icon"><i class="fas fa-wave-square"></i></div>
+                            <div>
+                                <h2 class="prak-card-title">Penggunaan OTDR</h2>
+                                <div class="prak-card-sub">Optical Time Domain Reflectometer • Kelas XII • AZZ Hub</div>
+                            </div>
+                        </div>
+                        <div class="prak-body">
+                            <div class="steps-container">
+                                <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Pengenalan OTDR</div><div class="step-desc">OTDR (Optical Time Domain Reflectometer) mengirim pulsa cahaya ke fiber dan menganalisis cahaya yang dipantulkan balik untuk mendeteksi event (splice, connector, kerusakan) dan lokasinya.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Persiapan & Setting OTDR</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Setting dasar OTDR:
+• Wavelength: 1310nm atau 1550nm
+• Range     : Sedikit lebih dari panjang fiber
+• Pulse width: Disesuaikan dengan range
+• Average   : 16-64 scans untuk akurasi
+• Refractive index: 1.4682 (SMF standard)</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Gunakan Launch Cable</div><div class="step-desc">Selalu gunakan launch cable (kabel pigtail 50-100m) sebelum fiber yang diuji. Ini untuk menghindari "dead zone" di awal pengukuran yang bisa menyembunyikan event pertama.</div></div></div>
+                                <div class="step">
+                                    <div class="step-num">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title">Membaca Trace OTDR</div>
+                                        <div class="code-block-wrapper">
+                                            <button class="copy-btn" onclick="copyCode(this)"><i class="far fa-copy"></i> Salin</button>
+                                            <pre class="step-code">Interpretasi Hasil OTDR:
+• Garis miring ke bawah = serat fiber (loss per jarak)
+• Spike ke atas (reflective) = connector/connector
+• Step ke bawah (non-reflective) = splice/macrobend
+• Spike tajam ke bawah di akhir = ujung fiber (end)
+
+Informasi yang dibaca:
+• Jarak event dari OTDR
+• Loss di setiap event (dB)
+• Return loss (dB)
+• Total loss sepanjang fiber</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step"><div class="step-num">5</div><div class="step-content"><div class="step-title">Laporan & Dokumentasi</div><div class="step-desc">Simpan hasil pengukuran ke memory OTDR atau export ke PC. Dokumentasikan setiap event dengan lokasinya untuk keperluan maintenance di masa depan.</div></div></div>
+                            </div>
+                            <div class="warning-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div><strong>Penting:</strong> Pastikan tidak ada perangkat aktif (transceiver SFP) di ujung fiber saat menggunakan OTDR, karena bisa merusak perangkat aktif tersebut.</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo-icon"><i class="fas fa-network-wired"></i></div>
+                <span>AZZ Learning Hub</span>
+            </div>
+            <p>© 2026 AZZ Learning Hub. All rights reserved. Platform Praktikum TKJ Modern & Responsif.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

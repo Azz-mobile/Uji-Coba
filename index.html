@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AZZ Learning Hub - Platform belajar Teknik Komputer dan Jaringan terlengkap untuk siswa SMK. Materi, Quiz, Tools, dan Praktikum TKJ.">
+<meta name="keywords" content="AZZ, TKJ, Teknik Komputer Jaringan, SMK, Belajar Jaringan, Mikrotik, Linux, Cisco, Fiber Optik">
+<meta name="author" content="AZZ Learning Hub">
+<meta property="og:title" content="AZZ Learning Hub - Platform Belajar TKJ Terlengkap">
+<meta property="og:description" content="Belajar Teknik Komputer dan Jaringan secara interaktif dan profesional bersama AZZ">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/images/og-image.png">
+<title>AZZ Learning Hub - Platform Belajar TKJ Terlengkap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #2563EB;
+  --primary-light: #3B82F6;
+  --primary-dark: #1D4ED8;
+  --cyan: #06B6D4;
+  --cyan-light: #22D3EE;
+  --navy: #0F172A;
+  --navy-light: #1E293B;
+  --navy-mid: #334155;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border: rgba(255,255,255,0.08);
+  --glass: rgba(255,255,255,0.05);
+  --glass-hover: rgba(255,255,255,0.1);
+  --card-bg: rgba(30,41,59,0.8);
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --purple: #8B5CF6;
+  --gradient-1: linear-gradient(135deg, #2563EB, #06B6D4);
+  --gradient-2: linear-gradient(135deg, #8B5CF6, #2563EB);
+  --gradient-3: linear-gradient(135deg, #06B6D4, #10B981);
+  --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"] {
+  --navy: #F8FAFC;
+  --navy-light: #F1F5F9;
+  --navy-mid: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border: rgba(0,0,0,0.08);
+  --glass: rgba(255,255,255,0.8);
+  --glass-hover: rgba(255,255,255,0.95);
+  --card-bg: rgba(255,255,255,0.9);
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text-primary);overflow-x:hidden;transition:var(--transition);}
+::selection{background:var(--primary);color:#fff;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--navy-light);}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px;}
+
+/* LOADING SCREEN */
+#loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--navy);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s ease;}
+#loading-screen.hide{opacity:0;pointer-events:none;}
+.loader-logo{font-size:2.5rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.5rem;animation:pulse 1.5s ease infinite;}
+.loader-bar{width:200px;height:4px;background:var(--navy-light);border-radius:2px;overflow:hidden;}
+.loader-progress{height:100%;background:var(--gradient-1);border-radius:2px;animation:loading 2s ease forwards;}
+@keyframes loading{0%{width:0%;}100%{width:100%;}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;transition:var(--transition);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+nav.scrolled{background:rgba(15,23,42,0.95);box-shadow:0 2px 20px rgba(0,0,0,0.3);border-bottom:1px solid var(--border);}
+[data-theme="light"] nav.scrolled{background:rgba(248,250,252,0.95);}
+.nav-container{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;}
+.logo-icon{width:42px;height:42px;background:var(--gradient-1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;font-weight:700;}
+.logo-text{font-size:1.25rem;font-weight:800;color:var(--text-primary);letter-spacing:0.5px;}
+.logo-text span{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-menu{display:flex;align-items:center;gap:0.25rem;list-style:none;}
+.nav-menu a{color:var(--text-secondary);text-decoration:none;padding:0.5rem 0.875rem;border-radius:var(--radius-sm);font-size:0.875rem;font-weight:500;transition:var(--transition);display:flex;align-items:center;gap:0.375rem;}
+.nav-menu a:hover,.nav-menu a.active{color:var(--text-primary);background:var(--glass);}
+.nav-actions{display:flex;align-items:center;gap:0.75rem;}
+.btn-theme{width:38px;height:38px;border:1px solid var(--border);background:var(--glass);border-radius:var(--radius-sm);cursor:pointer;color:var(--text-secondary);font-size:0.875rem;transition:var(--transition);display:flex;align-items:center;justify-content:center;}
+.btn-theme:hover{color:var(--text-primary);background:var(--glass-hover);}
+.btn-primary{background:var(--gradient-1);color:#fff;padding:0.5rem 1.25rem;border-radius:var(--radius-sm);text-decoration:none;font-size:0.875rem;font-weight:600;transition:var(--transition);border:none;cursor:pointer;display:flex;align-items:center;gap:0.375rem;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(37,99,235,0.4);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text-primary);transition:var(--transition);border-radius:2px;}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* MOBILE NAV */
+.mobile-nav{display:none;position:fixed;top:65px;left:0;right:0;bottom:0;background:var(--navy);z-index:999;overflow-y:auto;padding:1.5rem 1rem;transform:translateX(-100%);transition:transform 0.3s ease;}
+.mobile-nav.open{transform:translateX(0);}
+.mobile-nav-menu{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.mobile-nav-menu a{display:flex;align-items:center;gap:0.75rem;padding:0.875rem 1rem;border-radius:var(--radius-sm);color:var(--text-primary);text-decoration:none;font-weight:500;transition:var(--transition);background:var(--glass);}
+.mobile-nav-menu a:hover{background:var(--glass-hover);}
+.mobile-nav-menu a i{width:20px;color:var(--primary-light);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:7rem 1.5rem 4rem;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.15) 0%, transparent 60%),radial-gradient(ellipse at 80% 20%, rgba(6,182,212,0.1) 0%, transparent 50%),radial-gradient(ellipse at 60% 80%, rgba(139,92,246,0.08) 0%, transparent 50%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.hero-container{max-width:1400px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:100px;padding:0.375rem 1rem;font-size:0.8rem;font-weight:600;color:var(--cyan);margin-bottom:1.5rem;}
+.hero-badge i{font-size:0.75rem;}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:900;line-height:1.15;margin-bottom:1.25rem;}
+.hero h1 .highlight{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{font-size:clamp(0.95rem,1.5vw,1.1rem);color:var(--text-secondary);line-height:1.7;margin-bottom:2rem;max-width:540px;}
+.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-outline{background:transparent;color:var(--text-primary);padding:0.75rem 1.5rem;border-radius:var(--radius-sm);text-decoration:none;font-size:0.9rem;font-weight:600;transition:var(--transition);border:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
+.btn-outline:hover{background:var(--glass);border-color:var(--primary);}
+.btn-lg{padding:0.875rem 2rem;font-size:1rem;}
+.hero-visual{position:relative;}
+.hero-card-main{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;backdrop-filter:blur(20px);box-shadow:var(--shadow-lg);}
+.hero-card-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;}
+.hero-card-icon{width:48px;height:48px;background:var(--gradient-1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.25rem;}
+.hero-card-title{font-weight:700;font-size:1rem;}
+.hero-card-sub{font-size:0.75rem;color:var(--text-muted);}
+.course-list{display:flex;flex-direction:column;gap:0.75rem;}
+.course-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--glass);border-radius:var(--radius-sm);transition:var(--transition);}
+.course-item:hover{background:var(--glass-hover);}
+.course-item-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#fff;flex-shrink:0;}
+.course-item-name{font-size:0.85rem;font-weight:500;flex:1;}
+.course-item-badge{font-size:0.7rem;padding:0.25rem 0.5rem;border-radius:100px;font-weight:600;}
+.badge-blue{background:rgba(37,99,235,0.2);color:var(--primary-light);}
+.badge-cyan{background:rgba(6,182,212,0.2);color:var(--cyan);}
+.badge-green{background:rgba(16,185,129,0.2);color:var(--success);}
+.badge-purple{background:rgba(139,92,246,0.2);color:var(--purple);}
+.floating-cards{position:absolute;pointer-events:none;}
+.floating-card{position:absolute;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:0.75rem 1rem;backdrop-filter:blur(20px);font-size:0.8rem;font-weight:600;display:flex;align-items:center;gap:0.5rem;box-shadow:var(--shadow);animation:float 3s ease-in-out infinite;}
+.fc-1{top:-15px;right:10px;}
+.fc-2{bottom:-15px;left:-10px;animation-delay:0.5s;}
+.fc-3{top:45%;right:-25px;animation-delay:1.5s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* STATS */
+.stats{padding:3.5rem 1.5rem;background:var(--navy-light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:2rem;}
+.stat-item{text-align:center;}
+.stat-number{font-size:2.5rem;font-weight:800;background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
+.stat-label{color:var(--text-secondary);font-size:0.875rem;margin-top:0.25rem;}
+
+/* SECTION COMMONS */
+section{padding:4.5rem 1.5rem;}
+.section-container{max-width:1400px;margin:0 auto;}
+.section-header{text-align:center;margin-bottom:3rem;}
+.section-tag{display:inline-block;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);color:var(--primary-light);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.375rem 1rem;border-radius:100px;margin-bottom:1rem;}
+.section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:0.75rem;line-height:1.25;}
+.section-title span{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-desc{color:var(--text-secondary);font-size:0.95rem;max-width:600px;margin:0 auto;line-height:1.6;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:1.5rem;}
+.feature-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:var(--transition);cursor:default;position:relative;overflow:hidden;}
+.feature-card::before{content:'';position:absolute;inset:0;background:var(--gradient-1);opacity:0;transition:var(--transition);display:none;}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,0.3);}
+.feature-card:hover::before{opacity:0.03;}
+.feature-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.25rem;}
+.feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;}
+.feature-card p{font-size:0.875rem;color:var(--text-secondary);line-height:1.6;}
+.feature-link{display:inline-flex;align-items:center;gap:0.375rem;color:var(--primary-light);font-size:0.85rem;font-weight:600;text-decoration:none;margin-top:1.25rem;transition:var(--transition);}
+.feature-link:hover{gap:0.75rem;}
+
+/* CATEGORIES */
+.categories-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:1.25rem;}
+.category-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1rem;text-align:center;text-decoration:none;color:var(--text-primary);transition:var(--transition);position:relative;overflow:hidden;}
+.category-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary);}
+.cat-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 1rem;}
+.category-card h4{font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;}
+.category-card span{font-size:0.75rem;color:var(--text-muted);}
+.cat-arrow{position:absolute;bottom:1rem;right:1rem;font-size:0.75rem;color:var(--text-muted);opacity:0;transition:var(--transition);}
+.category-card:hover .cat-arrow{opacity:1;color:var(--primary-light);}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--navy-light);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:1.5rem;}
+.testi-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:var(--transition);}
+.testi-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+.testi-stars{color:#F59E0B;font-size:0.875rem;margin-bottom:1rem;}
+.testi-text{font-size:0.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.25rem;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:0.75rem;}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--gradient-1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem;}
+.testi-name{font-weight:700;font-size:0.9rem;}
+.testi-school{font-size:0.75rem;color:var(--text-muted);}
+
+/* FAQ */
+.faq-container{max-width:800px;margin:0 auto;}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:0.75rem;overflow:hidden;transition:var(--transition);}
+.faq-item.open{border-color:rgba(37,99,235,0.3);}
+.faq-question{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;cursor:pointer;font-weight:600;font-size:0.95rem;transition:var(--transition);gap:1rem;}
+.faq-question:hover{color:var(--primary-light);}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--glass);display:flex;align-items:center;justify-content:center;font-size:0.75rem;transition:var(--transition);flex-shrink:0;}
+.faq-item.open .faq-icon{background:var(--primary);color:#fff;transform:rotate(180deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+.faq-answer-inner{padding:0 1.5rem 1.25rem;color:var(--text-secondary);font-size:0.9rem;line-height:1.7;}
+
+/* FOOTER */
+footer{background:var(--navy-light);border-top:1px solid var(--border);padding:4rem 1.5rem 2rem;}
+.footer-container{max-width:1400px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem;}
+.footer-brand p{color:var(--text-secondary);font-size:0.875rem;line-height:1.7;margin:1rem 0 1.5rem;}
+.footer-social{display:flex;gap:0.75rem;}
+.social-btn{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:0.875rem;transition:var(--transition);text-decoration:none;}
+.social-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.footer-col h4{font-weight:700;font-size:0.9rem;margin-bottom:1rem;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:0.85rem;transition:var(--transition);}
+.footer-links a:hover{color:var(--primary-light);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);flex-wrap:wrap;gap:1rem;}
+.footer-bottom-links{display:flex;gap:1.5rem;}
+.footer-bottom-links a{color:var(--text-muted);text-decoration:none;transition:var(--transition);}
+.footer-bottom-links a:hover{color:var(--text-primary);}
+
+/* BACK TO TOP */
+#back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--gradient-1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;opacity:0;transform:translateY(20px);transition:var(--transition);z-index:500;border:none;box-shadow:var(--shadow);}
+#back-top.show{opacity:1;transform:translateY(0);}
+
+/* TOAST */
+.toast-container{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:9998;display:flex;flex-direction:column;gap:0.5rem;align-items:center;width:90%;max-width:400px;}
+.toast{width:100%;background:var(--navy-mid);border:1px solid var(--border);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.875rem;display:flex;align-items:center;gap:0.5rem;animation:toastIn 0.3s ease;box-shadow:var(--shadow);}
+.toast.success{border-color:var(--success);color:var(--success);}
+.toast.error{border-color:var(--danger);color:var(--danger);}
+@keyframes toastIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE BREAKPOINTS */
+@media(max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:850px){
+  .hero-container{grid-template-columns:1fr;}
+  .floating-cards{display:none;}
+  nav{padding:1rem;}
+  .nav-menu,.btn-primary.desktop-only{display:none;}
+  .hamburger{display:flex;}
+  .mobile-nav{display:block;}
+}
+@media(max-width:600px){
+  .hero-buttons{flex-direction:column;width:100%;}
+  .btn-primary, .btn-outline{justify-content:center;width:100%;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="loader-logo"><i class="fas fa-network-wired"></i> AZZ Hub</div>
+  <div class="loader-bar"><div class="loader-progress"></div></div>
+  <p style="color:var(--text-muted);font-size:0.8rem;margin-top:1rem;">Memuat AZZ Learning Hub...</p>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon"><i class="fas fa-network-wired"></i></div>
+      <span class="logo-text">AZZ <span>Hub</span></span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+      <li><a href="materi/index.html"><i class="fas fa-book"></i> Materi</a></li>
+      <li><a href="quiz/index.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+      <li><a href="tools/index.html"><i class="fas fa-tools"></i> Tools</a></li>
+      <li><a href="praktikum/index.html"><i class="fas fa-flask"></i> Praktikum</a></li>
+      <li><a href="ai-assistant/index.html"><i class="fas fa-robot"></i> AI Chat</a></li>
+      <li><a href="career/index.html"><i class="fas fa-briefcase"></i> Karir</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-theme" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+      <a href="materi/index.html" class="btn-primary desktop-only"><i class="fas fa-rocket"></i> Mulai Belajar</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <ul class="mobile-nav-menu">
+    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+    <li><a href="materi/index.html"><i class="fas fa-book"></i> Materi AZZ</a></li>
+    <li><a href="ipcalc/index.html"><i class="fas fa-calculator"></i> IP Calculator</a></li>
+    <li><a href="bandwidth/index.html"><i class="fas fa-tachometer-alt"></i> Bandwidth Calc</a></li>
+    <li><a href="quiz/index.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+    <li><a href="tools/index.html"><i class="fas fa-tools"></i> Tools TKJ</a></li>
+    <li><a href="praktikum/index.html"><i class="fas fa-flask"></i> Praktikum</a></li>
+    <li><a href="bank-soal/index.html"><i class="fas fa-database"></i> Bank Soal</a></li>
+    <li><a href="career/index.html"><i class="fas fa-briefcase"></i> Career Center</a></li>
+    <li><a href="download/index.html"><i class="fas fa-download"></i> Download</a></li>
+    <li><a href="galeri/index.html"><i class="fas fa-images"></i> Galeri</a></li>
+    <li><a href="profil/index.html"><i class="fas fa-school"></i> Profil Jurusan</a></li>
+    <li><a href="ai-assistant/index.html"><i class="fas fa-robot"></i> AI Assistant</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-star"></i> AZZ - Platform Belajar TKJ #1</div>
+      <h1>Kuasai <span class="highlight">Teknik Komputer</span> & Jaringan Bersama AZZ</h1>
+      <p>Platform pembelajaran interaktif terlengkap. Akses materi, quiz adaptif, tools canggih, dan panduan praktikum step-by-step secara gratis.</p>
+      <div class="hero-buttons">
+        <a href="materi/index.html" class="btn-primary btn-lg"><i class="fas fa-rocket"></i> Mulai Belajar Gratis</a>
+        <a href="profil/index.html" class="btn-outline btn-lg"><i class="fas fa-play-circle"></i> Tentang AZZ</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="hero-card-header">
+          <div class="hero-card-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div>
+            <div class="hero-card-title">Materi Unggulan AZZ</div>
+            <div class="hero-card-sub">10 kategori pembelajaran</div>
+          </div>
+        </div>
+        <div class="course-list">
+          <div class="course-item">
+            <div class="course-item-icon" style="background:linear-gradient(135deg,#2563EB,#06B6D4)"><i class="fas fa-network-wired"></i></div>
+            <span class="course-item-name">Jaringan Dasar</span>
+            <span class="course-item-badge badge-blue">Dasar</span>
+          </div>
+          <div class="course-item">
+            <div class="course-item-icon" style="background:linear-gradient(135deg,#8B5CF6,#2563EB)"><i class="fas fa-server"></i></div>
+            <span class="course-item-name">Mikrotik RouterOS</span>
+            <span class="course-item-badge badge-purple">Menengah</span>
+          </div>
+          <div class="course-item">
+            <div class="course-item-icon" style="background:linear-gradient(135deg,#06B6D4,#10B981)"><i class="fab fa-linux"></i></div>
+            <span class="course-item-name">Linux Server</span>
+            <span class="course-item-badge badge-cyan">Menengah</span>
+          </div>
+          <div class="course-item">
+            <div class="course-item-icon" style="background:linear-gradient(135deg,#F59E0B,#EF4444)"><i class="fas fa-shield-alt"></i></div>
+            <span class="course-item-name">Keamanan Jaringan</span>
+            <span class="course-item-badge badge-green">Lanjut</span>
+          </div>
+          <div class="course-item">
+            <div class="course-item-icon" style="background:linear-gradient(135deg,#10B981,#06B6D4)"><i class="fas fa-cloud"></i></div>
+            <span class="course-item-name">Cloud Computing</span>
+            <span class="course-item-badge badge-green">Lanjut</span>
+          </div>
+        </div>
+      </div>
+      <div class="floating-cards">
+        <div class="floating-card fc-1"><i class="fas fa-users" style="color:var(--primary)"></i> 2.500+ Siswa Aktif</div>
+        <div class="floating-card fc-2"><i class="fas fa-trophy" style="color:#F59E0B"></i> 95% Lulus UKK</div>
+        <div class="floating-card fc-3"><i class="fas fa-check-circle" style="color:var(--success)"></i> 150+ Materi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <div class="section-container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Fitur Unggulan</div>
+      <h2 class="section-title">Semua yang Kamu Butuhkan di <span>AZZ Hub</span></h2>
+      <p class="section-desc">Platform modern yang dirancang khusus untuk mempercepat pemahaman Teknik Komputer dan Jaringan</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(37,99,235,0.15);color:var(--primary-light)"><i class="fas fa-book-open"></i></div>
+        <h3>Materi Lengkap</h3>
+        <p>150+ materi komprehensif mencakup jaringan dasar, Mikrotik, Linux, Cisco, Fiber Optik, dan cyber security.</p>
+        <a href="materi/index.html" class="feature-link">Lihat Materi <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(6,182,212,0.15);color:var(--cyan)"><i class="fas fa-calculator"></i></div>
+        <h3>IP & Subnet Calculator</h3>
+        <p>Kalkulator kalkulasi IP canggih: Hitung CIDR, subnet mask, network address, broadcast, dan host range instan.</p>
+        <a href="ipcalc/index.html" class="feature-link">Coba Sekarang <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(139,92,246,0.15);color:var(--purple)"><i class="fas fa-question-circle"></i></div>
+        <h3>Quiz Interaktif</h3>
+        <p>500+ soal ujian interaktif lengkap dengan timer dan pembahasan. Persiapan matang ujian UKK dan BNSP.</p>
+        <a href="quiz/index.html" class="feature-link">Mulai Quiz <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(16,185,129,0.15);color:var(--success)"><i class="fas fa-flask"></i></div>
+        <h3>Panduan Praktikum</h3>
+        <p>Tutorial praktis step-by-step: Crimping kabel, konfigurasi Mikrotik, instalasi server Linux, DHCP, dan Fiber Optik.</p>
+        <a href="praktikum/index.html" class="feature-link">Lihat Praktikum <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(245,158,11,0.15);color:#F59E0B"><i class="fas fa-tools"></i></div>
+        <h3>Tools Jaringan AZZ</h3>
+        <p>Password generator, binary converter, QR code generator, port reference, dan berbagai utilitas teknis.</p>
+        <a href="tools/index.html" class="feature-link">Gunakan Tools <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:rgba(239,68,68,0.15);color:var(--danger)"><i class="fas fa-robot"></i></div>
+        <h3>AZZ AI Assistant</h3>
+        <p>Chatbot AI pintar siap membantu menjawab pertanyaan seputar masalah jaringan, subnetting, dan Mikrotik 24/7.</p>
+        <a href="ai-assistant/index.html" class="feature-link">Chat Sekarang <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section style="background:var(--navy-light);padding:4.5rem 1.5rem;">
+  <div class="section-container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Kategori Pembelajaran</div>
+      <h2 class="section-title">Jelajahi Topik Belajar <span>AZZ</span></h2>
+      <p class="section-desc">Dari level dasar hingga lanjutan, tersusun rapi untuk mempermudah alur belajar</p>
+    </div>
+    <div class="categories-grid">
+      <a href="materi/index.html?cat=jaringan" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(37,99,235,0.15);color:var(--primary-light)"><i class="fas fa-network-wired"></i></div>
+        <h4>Jaringan Dasar</h4>
+        <span>25 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=hardware" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(245,158,11,0.15);color:#F59E0B"><i class="fas fa-microchip"></i></div>
+        <h4>Komputer & Hardware</h4>
+        <span>20 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=mikrotik" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(139,92,246,0.15);color:var(--purple)"><i class="fas fa-router"></i></div>
+        <h4>Mikrotik</h4>
+        <span>18 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=linux" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(16,185,129,0.15);color:var(--success)"><i class="fab fa-linux"></i></div>
+        <h4>Linux Server</h4>
+        <span>22 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=cisco" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(6,182,212,0.15);color:var(--cyan)"><i class="fas fa-server"></i></div>
+        <h4>Cisco Dasar</h4>
+        <span>15 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=fiber" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(239,68,68,0.15);color:var(--danger)"><i class="fas fa-satellite-dish"></i></div>
+        <h4>Fiber Optik</h4>
+        <span>12 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=security" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(239,68,68,0.15);color:#F87171"><i class="fas fa-shield-alt"></i></div>
+        <h4>Keamanan Jaringan</h4>
+        <span>16 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=wireless" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(37,99,235,0.15);color:#60A5FA"><i class="fas fa-wifi"></i></div>
+        <h4>Wireless Networking</h4>
+        <span>14 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=cloud" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(6,182,212,0.15);color:#22D3EE"><i class="fas fa-cloud"></i></div>
+        <h4>Cloud Computing</h4>
+        <span>10 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+      <a href="materi/index.html?cat=troubleshoot" class="category-card fade-up">
+        <div class="cat-icon" style="background:rgba(245,158,11,0.15);color:#FCD34D"><i class="fas fa-wrench"></i></div>
+        <h4>Troubleshooting</h4>
+        <span>18 Materi</span>
+        <i class="fas fa-arrow-right cat-arrow"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Testimoni</div>
+      <h2 class="section-title">Pendapat Pengguna <span>AZZ Hub</span></h2>
+      <p class="section-desc">Pengalaman pelajar yang meningkatkan skill jaringan mereka bersama AZZ</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card fade-up">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">"Platform AZZ luar biasa! Materi subnetting yang biasanya rumit kini sangat gampang dimengerti. Nilai praktikum saya meningkat drastis!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-name">R**** P******</div>
+            <div class="testi-school">SMK N 1 J******, Kelas XII TKJ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">"IP Calculator AZZ sangat membantu pas praktikum. AI Chatbot-nya juga responsif dan solutif banget buat jawab seputar MikroTik!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--gradient-2)">S</div>
+          <div>
+            <div class="testi-name">S*** D***</div>
+            <div class="testi-school">SMK M*********** 2 B******, Kelas XI TKJ</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p class="testi-text">"Fitur Quiz di AZZ membantu banget buat latihan ujian BNSP. Tampilannya super bersih dan nyaman dipakai di HP ataupun laptop."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--gradient-3)">A</div>
+          <div>
+            <div class="testi-name">A**** F****</div>
+            <div class="testi-school">SMK T***** S*******, Kelas XII TKJ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-container">
+    <div class="section-header fade-up">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Pertanyaan <span>Sering Diajukan</span></h2>
+    </div>
+    <div class="faq-container">
+      <div class="faq-item fade-up">
+        <div class="faq-question">Apakah platform AZZ Hub gratis? <div class="faq-icon"><i class="fas fa-chevron-down"></i></div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Ya! AZZ Learning Hub 100% gratis diakses oleh siapa saja. Seluruh materi, simulator tools, dan quiz dapat digunakan tanpa dipungut biaya.</div></div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question">Apakah saya perlu membuat akun di AZZ Hub? <div class="faq-icon"><i class="fas fa-chevron-down"></i></div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Tidak perlu registrasi. Anda bisa langsung belajar. Riwayat dan progres penggunaan tersimpan aman pada browser Anda.</div></div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question">Apakah website AZZ nyaman dibuka di Smartphone? <div class="faq-icon"><i class="fas fa-chevron-down"></i></div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Sangat nyaman! Platform AZZ dirancang fully responsive untuk tampilan optimal di layar HP, Tablet, maupun PC Desktop.</div></div>
+      </div>
+      <div class="faq-item fade-up">
+        <div class="faq-question">Apa saja topik materi yang disediakan AZZ Hub? <div class="faq-icon"><i class="fas fa-chevron-down"></i></div></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Tersedia lebih dari 10 kategori mulai dari Dasar Jaringan, Hardware, Mikrotik, Linux Server, Cisco, Fiber Optik, hingga Keamanan Siber.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+          <div class="logo-icon"><i class="fas fa-network-wired"></i></div>
+          <span class="logo-text">AZZ <span>Hub</span></span>
+        </a>
+        <p>Platform pembelajaran Teknik Komputer dan Jaringan masa kini. Tingkatkan keahlian praktis IT bersama AZZ.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/artzy.794?igsh=OWZuMGN4ZWk2aWw0" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+          <a href="https://github.com/Azz-mobile" class="social-btn"><i class="fab fa-github"></i></a>
+          <a href="6283878729637" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pembelajaran</h4>
+        <ul class="footer-links">
+          <li><a href="materi/index.html">Materi AZZ</a></li>
+          <li><a href="quiz/index.html">Quiz Interaktif</a></li>
+          <li><a href="praktikum/index.html">Panduan Praktikum</a></li>
+          <li><a href="bank-soal/index.html">Bank Soal</a></li>
+          <li><a href="ai-assistant/index.html">AI Assistant</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tools & Kalkulator</h4>
+        <ul class="footer-links">
+          <li><a href="ipcalc/index.html">IP Calculator</a></li>
+          <li><a href="bandwidth/index.html">Bandwidth Calc</a></li>
+          <li><a href="tools/index.html">Tools TKJ</a></li>
+          <li><a href="download/index.html">Download Center</a></li>
+          <li><a href="galeri/index.html">Galeri</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informasi</h4>
+        <ul class="footer-links">
+          <li><a href="profil/index.html">Profil Jurusan</a></li>
+          <li><a href="career/index.html">Career Center</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Hubungi AZZ</a></li>
+          <li><a href="#">Kebijakan Privasi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AZZ Learning Hub. Dibuat dengan <i class="fas fa-heart" style="color:var(--danger)"></i> untuk seluruh siswa Indonesia.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privasi</a>
+        <a href="#">Syarat</a>
+        <a href="#">Kontak</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// LOADING
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loading-screen').classList.add('hide');},1200);});
+
+// THEME
+const themeToggle=document.getElementById('themeToggle');
+const savedTheme=localStorage.getItem('azz-theme')||'dark';
+document.documentElement.setAttribute('data-theme',savedTheme);
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click',()=>{
+  const curr=document.documentElement.getAttribute('data-theme');
+  const next=curr==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('azz-theme',next);
+  updateThemeIcon(next);
+  showToast(next==='dark'?'Dark Mode Aktif':'Light Mode Aktif','success');
+});
+function updateThemeIcon(t){themeToggle.querySelector('i').className=t==='dark'?'fas fa-sun':'fas fa-moon';}
+
+// NAVBAR SCROLL
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>50);
+  document.getElementById('back-top').classList.toggle('show',window.scrollY>300);
+});
+
+// HAMBURGER / MOBILE MENU
+const hamburger=document.getElementById('hamburger');
+const mobileNav=document.getElementById('mobileNav');
+hamburger.addEventListener('click',()=>{
+  hamburger.classList.toggle('active');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow=mobileNav.classList.contains('open')?'hidden':'';
+});
+mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  hamburger.classList.remove('active');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow='';
+}));
+
+// COUNTER ANIMATION
+function animateCounters(){
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const target=parseInt(el.getAttribute('data-target'));
+    let current=0;
+    const step=target/60;
+    const timer=setInterval(()=>{
+      current+=step;
+      if(current>=target){current=target;clearInterval(timer);}
+      el.textContent=Math.floor(current).toLocaleString();
+    },16);
+  });
+}
+const statsSection=document.querySelector('.stats');
+const statsObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounters();statsObserver.disconnect();}});
+},{threshold:0.2});
+if(statsSection)statsObserver.observe(statsSection);
+
+// SCROLL ANIMATIONS
+const fadeObserver=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);}});
+},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>fadeObserver.observe(el));
+
+// FAQ ACCORDION
+document.querySelectorAll('.faq-question').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const answer=item.querySelector('.faq-answer');
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(fi=>{
+      fi.classList.remove('open');
+      fi.querySelector('.faq-answer').style.maxHeight='0';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.maxHeight=answer.scrollHeight+'px';
+    }
+  });
+});
+
+// TOAST SYSTEM
+function showToast(msg,type='success'){
+  const t=document.createElement('div');
+  t.className=`toast ${type}`;
+  t.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${msg}`;
+  document.getElementById('toastContainer').appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const el=document.getElementById(id);
+    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>

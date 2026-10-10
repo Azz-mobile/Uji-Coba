@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AZZ - TKJ Learning Hub | Materi TKJ lengkap: Jaringan Dasar, Mikrotik, Linux, Cisco, Fiber Optik, Keamanan Jaringan">
+  <title>AZZ - TKJ Learning Hub</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-network-wired"></i></div>
+        <span class="logo-text">AZZ <span>Hub</span></span>
+      </a>
+      
+      <div class="nav-right">
+        <a href="../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> <span>Beranda</span></a>
+        <button class="btn-theme" id="themeToggle" aria-label="Toggle Theme"><i class="fas fa-sun"></i></button>
+        <button class="btn-mobile-sidebar" id="sidebarToggle" aria-label="Buka Kategori">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Page Header -->
+  <div class="page-header">
+    <div class="page-header-container">
+      <div class="breadcrumb">
+        <a href="index.html">Beranda</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Materi AZZ</span>
+      </div>
+      <h1 class="page-title">Materi <span>AZZ Network & Tech</span></h1>
+      <p class="page-desc">150+ materi terstruktur dari dasar hingga tingkat lanjut. Belajar dengan modul interaktif, progress tracker, dan bookmark personal.</p>
+    </div>
+  </div>
+
+  <!-- Main Content Layout -->
+  <div class="main-content">
+    <div class="content-layout">
+      
+      <!-- Overlay Mobile Sidebar -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar Filters & Progress -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-header">
+            <span><i class="fas fa-layer-group"></i> Kategori</span>
+            <button class="sidebar-close-btn" id="sidebarClose"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="cat-filters" id="catFilters">
+            <button class="cat-btn active" data-cat="all"><i class="fas fa-th-large"></i> <span>Semua Materi</span> <span class="cat-count">150</span></button>
+            <button class="cat-btn" data-cat="jaringan"><i class="fas fa-network-wired"></i> <span>Jaringan Dasar</span> <span class="cat-count">25</span></button>
+            <button class="cat-btn" data-cat="hardware"><i class="fas fa-microchip"></i> <span>Komputer & Hardware</span> <span class="cat-count">20</span></button>
+            <button class="cat-btn" data-cat="mikrotik"><i class="fas fa-router"></i> <span>Mikrotik</span> <span class="cat-count">18</span></button>
+            <button class="cat-btn" data-cat="linux"><i class="fab fa-linux"></i> <span>Linux Server</span> <span class="cat-count">22</span></button>
+            <button class="cat-btn" data-cat="cisco"><i class="fas fa-server"></i> <span>Cisco Dasar</span> <span class="cat-count">15</span></button>
+            <button class="cat-btn" data-cat="fiber"><i class="fas fa-satellite-dish"></i> <span>Fiber Optik</span> <span class="cat-count">12</span></button>
+            <button class="cat-btn" data-cat="security"><i class="fas fa-shield-alt"></i> <span>Keamanan Jaringan</span> <span class="cat-count">16</span></button>
+            <button class="cat-btn" data-cat="wireless"><i class="fas fa-wifi"></i> <span>Wireless Networking</span> <span class="cat-count">14</span></button>
+            <button class="cat-btn" data-cat="cloud"><i class="fas fa-cloud"></i> <span>Cloud Computing</span> <span class="cat-count">10</span></button>
+            <button class="cat-btn" data-cat="troubleshoot"><i class="fas fa-wrench"></i> <span>Troubleshooting</span> <span class="cat-count">18</span></button>
+          </div>
+          <div class="progress-section">
+            <div class="progress-label"><span>Progress Belajar</span><span id="progressPct">0%</span></div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+            <div class="progress-stats">
+              <div class="ps-item"><div class="ps-num" id="readCount">0</div><div class="ps-label">Dibaca</div></div>
+              <div class="ps-item"><div class="ps-num" id="bookmarkCount">0</div><div class="ps-label">Bookmark</div></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Grid Content Area -->
+      <div class="content-area">
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Cari materi AZZ...">
+          </div>
+          <div class="toolbar-actions">
+            <select class="sort-select" id="sortSelect">
+              <option value="default">Urutkan</option>
+              <option value="asc">A - Z</option>
+              <option value="desc">Z - A</option>
+              <option value="easy">Termudah</option>
+              <option value="hard">Tersulit</option>
+            </select>
+            <span class="results-count">Menampilkan <span id="resultCount">0</span> materi</span>
+          </div>
+        </div>
+
+        <div class="materi-grid" id="materiGrid"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL READ MATERIAL -->
+  <div class="modal-overlay" id="materiModal" tabindex="-1">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle"></h2>
+          <div id="modalMeta"></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()" aria-label="Tutup"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+</html>

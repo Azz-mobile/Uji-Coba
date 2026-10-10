@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZZ - Download Center Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Decorative Glows -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-logo">
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="brand-text">
+                AZZ <span> Hub</span>
+            </div>
+        </a>
+
+        <div class="nav-controls">
+            <a href="../index.html" class="btn-nav btn-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Beranda</span>
+            </a>
+            <button class="btn-nav btn-theme" id="themeToggle" aria-label="Toggle Theme">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header / Hero Area -->
+    <header class="hero-header">
+        <div class="header-content">
+            <span class="hero-badge">
+                <i class="fas fa-sparkles"></i> AZZ Resource Center
+            </span>
+            <h1 class="hero-title">
+                Download Center <span>AZZ</span>
+            </h1>
+            <p class="hero-desc">
+                Pusat unduhan modul interaktif, ebook pembelajaran, template CV profesional, dan materi berkualitas gratis untuk mendukung produktivitas Anda.
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Cari modul, ebook, template CV..." oninput="handleSearch(this.value)">
+                <button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        <!-- Category Filter Tabs -->
+        <nav class="category-tabs" aria-label="Filter Kategori">
+            <button class="cat-tab active" onclick="filterCat(this, 'all')">
+                <i class="fas fa-layer-group"></i> Semua
+            </button>
+            <button class="cat-tab" onclick="filterCat(this, 'modul')">
+                <i class="fas fa-book"></i> Modul PDF
+            </button>
+            <button class="cat-tab" onclick="filterCat(this, 'ebook')">
+                <i class="fas fa-book-reader"></i> Ebook AZZ
+            </button>
+            <button class="cat-tab" onclick="filterCat(this, 'cv')">
+                <i class="fas fa-id-card"></i> Template CV
+            </button>
+            <button class="cat-tab" onclick="filterCat(this, 'surat')">
+                <i class="fas fa-envelope-open-text"></i> Template Surat
+            </button>
+            <button class="cat-tab" onclick="filterCat(this, 'laporan')">
+                <i class="fas fa-file-invoice"></i> Template Laporan
+            </button>
+        </nav>
+
+        <!-- Stats / Meta Bar -->
+        <div class="grid-status-bar">
+            <span id="resultCount">Menampilkan semua resource</span>
+        </div>
+
+        <!-- Downloads Dynamic Grid -->
+        <div class="downloads-grid" id="dlGrid">
+            <!-- Items injected by script.js -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon"><i class="fas fa-folder-open"></i></div>
+            <h3>Resource Tidak Ditemukan</h3>
+            <p>Coba kata kunci pencarian lain atau pilih kategori yang berbeda.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 <strong>AZZ Hub</strong>. All Rights Reserved. Built for seamless learning & sharing.</p>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>
